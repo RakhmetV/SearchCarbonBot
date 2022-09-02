@@ -4,8 +4,7 @@ from aiogram.dispatcher.filters import Command
 from aiogram.types import ReplyKeyboardRemove, CallbackQuery, InputFile
 
 from tgbot.handlers.message import text_in_faculty_rus, text_in_faculty_eng
-from tgbot.keyboards.inline import language_keyboard, personal_account_keyboard_rus, personal_account_keyboard_eng, \
-    use_keyboard_rus, use_keyboard_eng
+from tgbot.keyboards.inline import personal_account_keyboard_rus, personal_account_keyboard_eng
 from tgbot.keyboards.keyboards_menu import keyboards_menu_faculty_rus, keyboards_menu_faculty_eng, \
     keyboards_menu_department_rus, keyboards_menu_department_eng, keyboards_main_menu_rus, keyboards_main_menu_eng, \
     keyboards_applicant_menu_rus, keyboards_applicant_menu_eng

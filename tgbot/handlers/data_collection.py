@@ -35,7 +35,9 @@ async def answer_name(message: types.Message, state: FSMContext):
 
     await message.answer(f'Приятно познакомиться, {answer}!')
     await asyncio.sleep(1)
-    await message.answer('Из какого ты учебного заведения? Напиши название учебного заведения')
+    await message.answer("""Из какого ты учебного заведения? Напиши название учебного заведения
+    
+Например, Школа №2, Инженерный лицей, Гимназия №39""")
     await Data.next()
 
 

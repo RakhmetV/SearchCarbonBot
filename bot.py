@@ -6,6 +6,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from tgbot.config import load_config
 from tgbot.filters.admin import AdminFilter
+from tgbot.handlers.CaseWorker import register_case_worker
 from tgbot.handlers.admin import register_admin
 from tgbot.handlers.data_collection import register_data_collection
 from tgbot.handlers.menu import register_menu
@@ -29,6 +30,7 @@ def register_all_handlers(dp):
     register_user(dp)
 
     register_data_collection(dp)
+    register_case_worker(dp)
 
     # register_testing(dp)
     # register_menu(dp)

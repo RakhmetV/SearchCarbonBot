@@ -30,17 +30,67 @@ likeTheSet = InlineKeyboardMarkup(
 researchesStart = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Давай', callback_data='researchesStart')
+            InlineKeyboardButton(text='Давай', callback_data='resStart')
         ],
         [
-            InlineKeyboardButton(text='Да', callback_data='researchesStart')
+            InlineKeyboardButton(text='Да', callback_data='resStart')
         ],
         [
-            InlineKeyboardButton(text='Жду!', callback_data='researchesStart')
+            InlineKeyboardButton(text='Жду!', callback_data='resStart')
         ]
     ],
     row_width=1
 )
+
+carbon_footprint = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Да', callback_data='carbonfootprint')
+        ],
+        [
+            InlineKeyboardButton(text='Нет', callback_data='carbonfootprint')
+        ]
+    ],
+    row_width=1
+)
+
+carbonFootprintTest = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='CO2', callback_data='carbonTest')
+        ],
+        [
+            InlineKeyboardButton(text='H2O', callback_data='carbonTest')
+        ],
+        [
+            InlineKeyboardButton(text='CH4', callback_data='carbonTest')
+        ],
+        [
+            InlineKeyboardButton(text='N2O', callback_data='carbonTest')
+        ],
+        [
+            InlineKeyboardButton(text='H2S', callback_data='carbonTesAnswer')
+        ]
+    ],
+    row_width=1
+)
+
+carbonFootprintAnswer = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Да!', callback_data='carbonAnswer')
+        ],
+        [
+            InlineKeyboardButton(text='100%', callback_data='carbonAnswer')
+        ]
+    ],
+    row_width=1
+)
+
+
+
+
+
 
 personal_account_keyboard_rus = InlineKeyboardMarkup(
     inline_keyboard=[
@@ -58,4 +108,3 @@ personal_account_keyboard_eng = InlineKeyboardMarkup(
     ],
     row_width=1
 )
-
