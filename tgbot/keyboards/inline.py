@@ -1,12 +1,42 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-language_keyboard = InlineKeyboardMarkup(
+start_bot_keyboard = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Русский', callback_data='lang:rus:1')
+            InlineKeyboardButton(text='Начать', callback_data='start')
+        ]
+    ],
+    row_width=1
+)
+
+likeTheSet = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Вау', callback_data='likeSet')
         ],
         [
-            InlineKeyboardButton(text='English', callback_data='lang:eng:1')
+            InlineKeyboardButton(text='Прикольно', callback_data='likeSet')
+        ],
+        [
+            InlineKeyboardButton(text='Красиво', callback_data='likeSet')
+        ],
+        [
+            InlineKeyboardButton(text='Нормально', callback_data='likeSet')
+        ]
+    ],
+    row_width=1
+)
+
+researchesStart = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Давай', callback_data='researchesStart')
+        ],
+        [
+            InlineKeyboardButton(text='Да', callback_data='researchesStart')
+        ],
+        [
+            InlineKeyboardButton(text='Жду!', callback_data='researchesStart')
         ]
     ],
     row_width=1
@@ -29,19 +59,3 @@ personal_account_keyboard_eng = InlineKeyboardMarkup(
     row_width=1
 )
 
-use_keyboard_rus = InlineKeyboardMarkup(
-    inline_keyboard=[
-        [
-            InlineKeyboardButton(text='Калькулятор ЕГЭ', url='http://www.pk.rusoil.net/egechoice')
-        ],
-    ],
-    row_width=1
-)
-use_keyboard_eng = InlineKeyboardMarkup(
-    inline_keyboard=[
-        [
-            InlineKeyboardButton(text='USE Calculator', url='http://www.pk.rusoil.net/egechoice')
-        ],
-    ],
-    row_width=1
-)

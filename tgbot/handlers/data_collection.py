@@ -1,0 +1,81 @@
+import asyncio
+from aiogram import types, Dispatcher
+from aiogram.dispatcher import FSMContext
+from aiogram.types import CallbackQuery
+
+from tgbot.keyboards.inline import likeTheSet
+from tgbot.states.test import Data
+
+
+async def start_bot(call: CallbackQuery):
+    await call.answer(cache_time=5)
+
+    await call.message.answer('Для начала давай познакомимся!')
+    await asyncio.sleep(1)
+    await call.message.answer('Как тебя зовут?')
+    await Data.Name.set()
+
+
+async def answer_name(message: types.Message, state: FSMContext):
+    answer = message.text
+
+    # записываем ответ в state
+    await state.update_data(answer1=answer)
+
+    # записываем ответ в state Вариант 2
+    # await state.update_data(
+    #     {'answear1':answer}
+    # )
+
+    # записываем ответ в state Вариант 3
+    # async with state.proxy() as data:
+    #     data['answer1'] = answer
+    # Удобно, если нужно сделать data['answer1']+=1
+    # или data['list'].append(1), т.к не нужно сначала доставать из стейта. а потом задавать
+
+    await message.answer(f'Приятно познакомиться, {answer}!')
+    await asyncio.sleep(1)
+    await message.answer('Из какого ты учебного заведения? Напиши название учебного заведения')
+    await Data.next()
+
+
+async def answer_education(message: types.Message, state: FSMContext):
+    answer = message.text
+    await state.update_data(answer2=answer)
+    await asyncio.sleep(1)
+    await message.answer('На ваших столах вы можете найти листок с паролем')
+    await asyncio.sleep(1)
+    await message.answer('Введи пароль')
+    await Data.next()
+
+
+async def answer_case_password(message: types.Message, state: FSMContext):
+    answer = message.text
+    await state.update_data(answer3=answer)
+    team_selection = {
+        'CH4': 'Команда 1',
+        'CO2': 'Команда 2',
+        'H2O': 'Команда 3',
+        'N2O': 'Команда 4',
+        'SF6': 'Команда 5'
+    }
+    if answer in team_selection:
+        await message.answer(team_selection[answer])
+        await message.answer('Супер, ты получаешь исследование по теме название кейса')
+        await state.finish()
+
+        await asyncio.sleep(1)
+        await message.answer('Назови тему исследования организатору. Он выдаст тебе набор для исследования')
+        await asyncio.sleep(1)
+        await message.answer('Как тебе набор?', reply_markup=likeTheSet)
+    else:
+        await message.answer('Вы ввели неправильный пароль. Введите пароль снова')
+
+    # await Test.next()
+
+
+def register_data_collection(dp: Dispatcher):
+    dp.register_callback_query_handler(start_bot, text_contains='start', state=None)
+    dp.register_message_handler(answer_name, state=Data.Name)
+    dp.register_message_handler(answer_education, state=Data.EducationalInstitution)
+    dp.register_message_handler(answer_case_password, state=Data.PasswordCase)

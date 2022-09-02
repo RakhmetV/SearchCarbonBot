@@ -1,13 +1,21 @@
 from aiogram import Dispatcher
 from aiogram.types import Message
 
-from tgbot.keyboards.inline import language_keyboard
+from tgbot.keyboards.inline import start_bot_keyboard
 
 
 async def admin_start(message: Message):
-    await  message.answer('Привет! выбери язык/Hi! choose a language', parse_mode='HTML', reply_markup=language_keyboard)
-    #await  message.answer('Привет! выбери язык/Hi! choose a language', parse_mode='HTML')
-    #await message.reply("Hello, admin!")
+    await  message.answer("""Привет!
+    
+Сегодня с тобой Гуля, Никита, Яна и Тимур :)
+Мы очень рады видеть тебя на нашем обучающем исследовании “В поисках углеродного следа”. Давай вместе искать углеродный след
+
+Жми «Начать» и погнали!""", parse_mode='HTML', reply_markup=start_bot_keyboard)
+
+    #await message.answer_photo(photo, caption='желаемый текст')
+
+    # await  message.answer('Привет! выбери язык/Hi! choose a language', parse_mode='HTML')
+    # await message.reply("Hello, admin!")
 
 
 def register_admin(dp: Dispatcher):

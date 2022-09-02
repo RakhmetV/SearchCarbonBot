@@ -1,5 +1,3 @@
-import matplotlib.pyplot as plt
-
 
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
@@ -59,11 +57,7 @@ async def answer_q2(message: types.message, state: FSMContext):
     #Вариант 1
     y = [int(answer1), int(answer2)]
 
-    # метки диаграммы
-    mylabels = ["Лет", "За ПК"]
 
-    plt.pie(y, labels=mylabels)
-    plt.savefig('first.png')
     await state.finish()
 
     # Вариант 2
