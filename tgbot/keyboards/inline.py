@@ -87,10 +87,25 @@ carbonFootprintAnswer = InlineKeyboardMarkup(
     row_width=1
 )
 
+carbonInlineOne = {
+    0: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='😍', callback_data='carbonInlineOne')
+            ],
+            [
+                InlineKeyboardButton(text='😐', callback_data='carbonInlineOne')
+            ]
+        ],
+        row_width=1
+    )
+}
 
 
 
 
+
+#--------------------------------------------------------------------------------------------------------------
 
 personal_account_keyboard_rus = InlineKeyboardMarkup(
     inline_keyboard=[
