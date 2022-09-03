@@ -2,8 +2,10 @@ import asyncio
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
+from datetime import datetime
 
 from tgbot.keyboards.inline import likeTheSet
+from tgbot.services.db import Database
 from tgbot.states.test import Data
 
 
@@ -20,7 +22,7 @@ async def answer_name(message: types.Message, state: FSMContext):
     answer = message.text
 
     # записываем ответ в state
-    await state.update_data(answer1=answer)
+    await state.update_data(name=answer)
 
     # записываем ответ в state Вариант 2
     # await state.update_data(
@@ -43,7 +45,7 @@ async def answer_name(message: types.Message, state: FSMContext):
 
 async def answer_education(message: types.Message, state: FSMContext):
     answer = message.text
-    await state.update_data(answer2=answer)
+    await state.update_data(college=answer)
     await asyncio.sleep(1)
     await message.answer('На ваших столах вы можете найти листок с паролем')
     await asyncio.sleep(1)
@@ -53,17 +55,33 @@ async def answer_education(message: types.Message, state: FSMContext):
 
 async def answer_case_password(message: types.Message, state: FSMContext):
     answer = message.text
-    await state.update_data(answer3=answer)
+    await state.update_data(password=answer)
+    db = Database('database.db')
     team_selection = {
-        'CH4': 'Команда 1',
-        'CO2': 'Команда 2',
-        'H2O': 'Команда 3',
-        'N2O': 'Команда 4',
-        'SF6': 'Команда 5'
+        'CH4': 1,
+        'CO2': 2,
+        'H2O': 3,
+        'N2O': 4,
+        'SF6': 5
     }
+
+    newdate = datetime.now()
+    newdate = newdate.strftime("%d/%m/%Y")
     if answer in team_selection:
-        await message.answer(team_selection[answer])
+        await message.answer(f'Ваша команда под номером {team_selection[answer]}')
         await message.answer('Супер, ты получаешь исследование по теме название кейса')
+        print(message)
+        data = await state.get_data()  # тут хранится весь словарь состояний
+        name = data.get('name')
+        college = data.get('college')
+        db.add_user(message.from_user.id,
+                    name,
+                    college,
+                    newdate,
+                    team_selection[answer]
+                    )
+
+
         await state.finish()
 
         await asyncio.sleep(1)

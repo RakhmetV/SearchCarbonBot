@@ -13,6 +13,8 @@ from tgbot.handlers.menu import register_menu
 from tgbot.handlers.testing import register_testing
 from tgbot.handlers.user import register_user
 from tgbot.middlewares.environment import EnvironmentMiddleware
+from tgbot.services.db import Database
+
 
 logger = logging.getLogger(__name__)
 
