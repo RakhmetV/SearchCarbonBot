@@ -1,17 +1,17 @@
 import asyncio
+import random
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
 from datetime import datetime
 
+from tgbot.handlers.message import team_selection, team_name
 from tgbot.keyboards.inline import likeTheSet
 from tgbot.services.db import Database
 from tgbot.states.test import Data
 
-
 async def start_bot(call: CallbackQuery):
     await call.answer(cache_time=5)
-
     await call.message.answer('Для начала давай познакомимся!')
     await asyncio.sleep(1)
     await call.message.answer('Как тебя зовут?')
@@ -57,20 +57,9 @@ async def answer_case_password(message: types.Message, state: FSMContext):
     answer = message.text
     await state.update_data(password=answer)
     db = Database('database.db')
-    team_selection = {
-        'CH4': 1,
-        'CO2': 2,
-        'H2O': 3,
-        'N2O': 4,
-        'SF6': 5
-    }
-
-    newdate = datetime.now()
-    newdate = newdate.strftime("%d/%m/%Y")
+    nowdate = datetime.now()
+    newdate = nowdate.strftime("%d/%m/%Y")
     if answer in team_selection:
-        await message.answer(f'Ваша команда под номером {team_selection[answer]}')
-        await message.answer('Супер, ты получаешь исследование по теме название кейса')
-        print(message)
         data = await state.get_data()  # тут хранится весь словарь состояний
         name = data.get('name')
         college = data.get('college')
@@ -80,13 +69,18 @@ async def answer_case_password(message: types.Message, state: FSMContext):
                     newdate,
                     team_selection[answer]
                     )
-
+        variant = random.randint(0, 9)
+        while db.check_variant(newdate, team_selection[answer], variant):
+            variant = random.randint(0, 9)
+        db.set_variant(message.from_user.id, variant)
+        await message.answer(f'Вы в команда под номером {team_selection[answer]}')
+        await message.answer(f'Супер, ты получаешь исследование по теме <b>{team_name[variant]}</b>', parse_mode='HTML')
 
         await state.finish()
 
         await asyncio.sleep(1)
         await message.answer('Назови тему исследования организатору. Он выдаст тебе набор для исследования')
-        await asyncio.sleep(1)
+        await asyncio.sleep(3)
         await message.answer('Как тебе набор?', reply_markup=likeTheSet)
     else:
         await message.answer('Вы ввели неправильный пароль. Введите пароль снова')

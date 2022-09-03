@@ -77,11 +77,7 @@ async def carbon_footprint_test_answer(call: CallbackQuery):
     await call.message.answer('Если мы оставляем углеродный след, то значит, '
                               'мы сами же можем сделать так, чтобы его было меньше. '
                               '\nДа, ведь?', reply_markup=carbonFootprintAnswer)
-async def carbon_footprint_answer(call: CallbackQuery):
-    await call.answer(cache_time=5)
-    #Фото Гули
-    await call.message.answer('Давай рассмотрим жизненные ситуации, на примере которых ты сможешь узнать, '
-                              'как можно будет снизить свой углеродный след. \n\nПогнали!')
+
 
 
 def register_case_worker(dp: Dispatcher):
@@ -90,4 +86,3 @@ def register_case_worker(dp: Dispatcher):
     dp.register_callback_query_handler(carbon_footprint_info, text_contains='carbonfootprint', state=None)
     dp.register_callback_query_handler(carbon_footprint_test, text_contains='carbonTest', state=None)
     dp.register_callback_query_handler(carbon_footprint_test_answer, text_contains='carbonTesAnswer', state=None)
-    dp.register_callback_query_handler(carbon_footprint_answer, text_contains='carbonAnswer', state=None)
