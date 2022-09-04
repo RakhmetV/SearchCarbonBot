@@ -2,3 +2,4 @@ aiogram
 asyncio
 environs
 pandas
+openpyxl

@@ -7,7 +7,7 @@ from aiogram.utils.markdown import hlink
 from tgbot.handlers.formulas import calculation_one, calculation_two
 from tgbot.handlers.message import case_text_one, case_text_two, case_text_three, case_text_four, case_text_five, \
     case_text_seven, case_text_eight, case_text_nine, case_text_ten, case_text_eleven, case_text_thirteen, \
-    case_text_fourteen, case_text_fifteen, case_text_sixteen, case_text_seventeen
+    case_text_fourteen, case_text_fifteen, case_text_sixteen, case_text_seventeen, case_text_six, case_text_twelve
 from tgbot.keyboards.inline import carbonInlineOne, carbonInlineTwo, carbonInlineThree, carbonInlineFour
 from tgbot.services.db import Database
 from tgbot.states.test import DataCase
@@ -73,7 +73,7 @@ async def carbon_question_two(message: types.Message, state: FSMContext):
         result = calculation_one(variant_case, answer_a, answer_b)
         db.set_answer_one(message.from_user.id, result)
         await message.answer(
-            f'<b>На {result:.2f} кг СО2 (углеродного следа) в год</b>\nты сможешь снизить, заменив маленькие флаконы с шампунями на большие',
+            f'<b>На {result:.2f} кг СО2 (углеродного следа) в год</b>\n{case_text_six[variant_case]}',
             parse_mode='HTML')
         await asyncio.sleep(1)
 
@@ -123,7 +123,7 @@ async def carbon_question_four(message: types.Message, state: FSMContext):
         result = calculation_two(variant_case, answer_a, answer_b)
         db.set_answer_two(message.from_user.id, result)
         await message.answer(
-            f'<b>на {result:.2f} кг СО2 (углеродного следа) в год</b>\nты сможешь снизить, используя аэратор',
+            f'<b>на {result:.2f} кг СО2 (углеродного следа) в год</b>\n{case_text_twelve[variant_case]}',
             parse_mode='HTML')
         await asyncio.sleep(2)
 
