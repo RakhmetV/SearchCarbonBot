@@ -91,21 +91,60 @@ carbonInlineOne = {
     0: InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text='😍', callback_data='carbonInlineOne')
+                InlineKeyboardButton(text='😍', callback_data='carbonInOne')
             ],
             [
-                InlineKeyboardButton(text='😐', callback_data='carbonInlineOne')
+                InlineKeyboardButton(text='👍', callback_data='carbonInOne')
             ]
         ],
         row_width=1
     )
 }
 
+carbonInlineTwo = {
+    0: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInTwo')
+            ],
+            [
+                InlineKeyboardButton(text='👎', callback_data='carbonInTwo')
+            ]
+        ],
+        row_width=1
+    )
+}
+carbonInlineThree = {
+    0: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Да, но буду менять свою привычку!', callback_data='carbonInThree')
+            ],
+            [
+                InlineKeyboardButton(text='Нет, не оставляю', callback_data='carbonInThree')
+            ]
+        ],
+        row_width=1
+    )
+}
+carbonInlineFour = {
+    0: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInFour')
+            ],
+            [
+                InlineKeyboardButton(text='👌', callback_data='carbonInFour')
+            ],
+            [
+                InlineKeyboardButton(text='👎', callback_data='carbonInFour')
+            ]
+        ],
+        row_width=1
+    )
+}
 
-
-
-
-#--------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------
 
 personal_account_keyboard_rus = InlineKeyboardMarkup(
     inline_keyboard=[
