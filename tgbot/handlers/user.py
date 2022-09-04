@@ -2,11 +2,16 @@ from aiogram import Dispatcher
 from aiogram.types import Message
 
 from tgbot.keyboards.inline import start_bot_keyboard
+from tgbot.services.db import Database
 
 
 async def user_start(message: Message):
-    await  message.answer("""Привет!
-    
+    db = Database('database.db')
+    if db.user_exists(message.from_user.id):
+        await message.answer('Ты уже проходил исследование)')
+    else:
+        await message.answer("""Привет!
+
 Сегодня с тобой Гуля, Никита, Яна и Тимур :)
 Мы очень рады видеть тебя на нашем обучающем исследовании “В поисках углеродного следа”. Давай вместе искать углеродный след
 

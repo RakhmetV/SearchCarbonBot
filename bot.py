@@ -10,7 +10,6 @@ from tgbot.handlers.CaseVariant import register_case_variant
 from tgbot.handlers.CaseWorker import register_case_worker
 from tgbot.handlers.admin import register_admin
 from tgbot.handlers.data_collection import register_data_collection
-from tgbot.handlers.testing import register_testing
 from tgbot.handlers.user import register_user
 from tgbot.middlewares.environment import EnvironmentMiddleware
 from tgbot.services.db import Database
@@ -35,7 +34,6 @@ def register_all_handlers(dp):
     register_case_worker(dp)
     register_case_variant(dp)
 
-    # register_testing(dp)
 
 
 async def main():

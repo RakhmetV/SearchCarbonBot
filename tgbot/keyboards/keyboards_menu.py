@@ -1,308 +1,43 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-keyboards_main_menu_rus = ReplyKeyboardMarkup(
+start_menu = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text='Личный кабинет'),
+            KeyboardButton(text='Пройти интерактив'),
         ],
         [
-            KeyboardButton(text='Абитуриенту')
-        ],
-        [
-            KeyboardButton(text='Язык')
-        ],
-        [
-            KeyboardButton(text='Фото')
+            KeyboardButton(text='Выгрузить данные Exel')
         ]
     ],
     resize_keyboard=True
 )
 
-keyboards_main_menu_eng = ReplyKeyboardMarkup(
+interactive_menu = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text='Personal account'),
+            KeyboardButton(text='Начать'),
         ],
         [
-            KeyboardButton(text='To the applicant')
+            KeyboardButton(text='Удалить меня из БД')
         ],
         [
-            KeyboardButton(text='Language')
-        ]
-    ],
-    resize_keyboard=True
-)
-keyboards_applicant_menu_rus = ReplyKeyboardMarkup(
-    keyboard=[
-        [
-            KeyboardButton(text='Калькулятор ЕГЭ')
-        ],
-        [
-            KeyboardButton(text='Факультеты')
-        ],
-        [
-            KeyboardButton(text='Меню')
-        ]
-    ],
-    resize_keyboard=True
-)
-keyboards_applicant_menu_eng = ReplyKeyboardMarkup(
-    keyboard=[
-        [
-            KeyboardButton(text='USE Calculator')
-        ],
-        [
-            KeyboardButton(text='Faculty')
-        ],
-        [
-            KeyboardButton(text='Menu')
+            KeyboardButton(text='Назад')
         ]
     ],
     resize_keyboard=True
 )
 
-keyboards_menu_faculty_rus = ReplyKeyboardMarkup(
+exel_menu = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text='ГНФ'),
-            KeyboardButton(text='ФТТ'),
-            KeyboardButton(text='IT-институт')
+            KeyboardButton(text='За сегодня'),
         ],
         [
-            KeyboardButton(text='ТФ'),
-            KeyboardButton(text='АСИ'),
-            KeyboardButton(text='ИНБ')
+            KeyboardButton(text='За все время')
         ],
         [
-            KeyboardButton(text='Абитуриенту')
+            KeyboardButton(text='Назад')
         ]
     ],
     resize_keyboard=True
 )
-
-keyboards_menu_faculty_eng = ReplyKeyboardMarkup(
-    keyboard=[
-        [
-            KeyboardButton(text='GNF'),
-            KeyboardButton(text='FTT'),
-            KeyboardButton(text='IT')
-        ],
-        [
-            KeyboardButton(text='TF'),
-            KeyboardButton(text='ASI'),
-            KeyboardButton(text='INB')
-        ],
-        [
-            KeyboardButton(text='To the applicant')
-        ]
-    ],
-    resize_keyboard=True
-)
-
-keyboards_menu_department_rus={
-    'ГНФ':ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='РНГМ'),
-                KeyboardButton(text='РГКМ'),
-                KeyboardButton(text='Геология')
-            ],
-            [
-                KeyboardButton(text='БНГС'),
-                KeyboardButton(text='Геофизика'),
-                KeyboardButton(text='ППБ')
-            ],
-            [
-                KeyboardButton(text='Факультеты')
-            ]
-        ],
-        resize_keyboard=True
-    ),
-    'ФТТ':ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='ТХНГ'),
-                KeyboardButton(text='ПТЭ'),
-                KeyboardButton(text='СТ')
-            ],
-            [
-                KeyboardButton(text='ГТ'),
-                KeyboardButton(text='ПТС')
-            ],
-            [
-                KeyboardButton(text='Факультеты')
-            ]
-        ],
-        resize_keyboard=True
-    ),
-    'IT-институт':ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='ВТИК'),
-                KeyboardButton(text='ЭЭП'),
-                KeyboardButton(text='АТМ')
-            ],
-            [
-                KeyboardButton(text='Факультеты')
-            ]
-        ],
-        resize_keyboard=True
-    ),
-    'ТФ':ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='НХТ'),
-                KeyboardButton(text='ТНГ'),
-                KeyboardButton(text='БТМП')
-            ],
-            [
-                KeyboardButton(text='ФОХ'),
-                KeyboardButton(text='ПЭ'),
-                KeyboardButton(text='БП и ОТ'),
-            ],
-            [
-                KeyboardButton(text='ГМХТП'),
-                KeyboardButton(text='ШколМонТех')
-            ],
-            [
-                KeyboardButton(text='Факультеты')
-            ]
-        ],
-        resize_keyboard=True
-    ),
-    'АСИ':ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='ПЕД'),
-                KeyboardButton(text='АДиТСП'),
-                KeyboardButton(text='ВВ'),
-            ],
-            [
-                KeyboardButton(text='СК'),
-                KeyboardButton(text='Архитектура'),
-                KeyboardButton(text='ЭНТ')
-            ],
-            [
-                KeyboardButton(text='Факультеты')
-            ]
-        ],
-        resize_keyboard=True
-    ),
-    'ИНБ':ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='СПК'),
-                KeyboardButton(text='ЭСР'),
-                KeyboardButton(text='КФУ')
-            ],
-            [
-                KeyboardButton(text='Факультеты')
-            ]
-        ],
-        resize_keyboard=True
-    ),
-}
-
-keyboards_menu_department_eng={
-    'GNF':ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='RNGM'),
-                KeyboardButton(text='RGKM'),
-                KeyboardButton(text='Geolog')
-            ],
-            [
-                KeyboardButton(text='BNGS'),
-                KeyboardButton(text='Geophis'),
-                KeyboardButton(text='PPB')
-            ],
-            [
-                KeyboardButton(text='Faculty')
-            ]
-        ],
-        resize_keyboard=True
-    ),
-    'FTT':ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='THNG'),
-                KeyboardButton(text='PTE'),
-                KeyboardButton(text='ST')
-            ],
-            [
-                KeyboardButton(text='GT'),
-                KeyboardButton(text='PTS')
-            ],
-            [
-                KeyboardButton(text='Faculty')
-            ]
-        ],
-        resize_keyboard=True
-    ),
-    'IT':ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='VTIK'),
-                KeyboardButton(text='EEP'),
-                KeyboardButton(text='ATM')
-            ],
-            [
-                KeyboardButton(text='Faculty')
-            ]
-        ],
-        resize_keyboard=True
-    ),
-    'TF':ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='NHT'),
-                KeyboardButton(text='TNG'),
-                KeyboardButton(text='BTM')
-            ],
-            [
-                KeyboardButton(text='AJH'),
-                KeyboardButton(text='PE'),
-                KeyboardButton(text='BP and OT'),
-            ],
-            [
-                KeyboardButton(text='GMTH'),
-                KeyboardButton(text='SIT')
-            ],
-            [
-                KeyboardButton(text='Faculty')
-            ]
-        ],
-        resize_keyboard=True
-    ),
-    'ASI':ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='PED'),
-                KeyboardButton(text='ADiTPS'),
-                KeyboardButton(text='VV'),
-            ],
-            [
-                KeyboardButton(text='SK'),
-                KeyboardButton(text='Arkhitektor'),
-                KeyboardButton(text='ENT')
-            ],
-            [
-                KeyboardButton(text='Faculty')
-            ]
-        ],
-        resize_keyboard=True
-    ),
-    'INB':ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text='SPK'),
-                KeyboardButton(text='ESR'),
-                KeyboardButton(text='KFU')
-            ],
-            [
-                KeyboardButton(text='Faculty')
-            ]
-        ],
-        resize_keyboard=True
-    ),
-}

@@ -2,6 +2,7 @@ import asyncio
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
+from aiogram.utils.markdown import hlink
 
 from tgbot.handlers.formulas import calculation_one, calculation_two
 from tgbot.handlers.message import case_text_one, case_text_two, case_text_three, case_text_four, case_text_five, \
@@ -38,18 +39,19 @@ async def carbon_footprint_answer(call: CallbackQuery, state: FSMContext):
     await asyncio.sleep(1)
 
     await call.message.answer(case_text_four[variant_case])
-    await asyncio.sleep(1)
+    # await asyncio.sleep(1)
 
     await DataCase.next()
 
 
 async def carbon_question_one(message: types.Message, state: FSMContext):
+    await asyncio.sleep(1)
     if message.text.isdigit():
         await state.update_data(one=int(message.text))
         data = await state.get_data()  # тут хранится весь словарь состояний
         variant_case = data.get('variant')
         await message.answer(case_text_five[variant_case])
-        await asyncio.sleep(1)
+        # await asyncio.sleep(1)
 
         await DataCase.next()
     else:
@@ -57,6 +59,7 @@ async def carbon_question_one(message: types.Message, state: FSMContext):
 
 
 async def carbon_question_two(message: types.Message, state: FSMContext):
+    await asyncio.sleep(1)
     if message.text.isdigit():
         await state.update_data(two=int(message.text))
         data = await state.get_data()  # тут хранится весь словарь состояний
@@ -75,7 +78,6 @@ async def carbon_question_two(message: types.Message, state: FSMContext):
         await asyncio.sleep(1)
 
         await message.answer(case_text_seven[variant_case], reply_markup=carbonInlineOne[0])
-        await asyncio.sleep(1)
         # await DataCase.next()
     else:
         await message.answer('Введите целое число.')
@@ -83,6 +85,7 @@ async def carbon_question_two(message: types.Message, state: FSMContext):
 
 async def carbon_inline_keyboard_one(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
+    await asyncio.sleep(1)
     data = await state.get_data()  # тут хранится весь словарь состояний
     variant_case = data.get('variant')
 
@@ -94,16 +97,15 @@ async def carbon_inline_keyboard_one(call: CallbackQuery, state: FSMContext):
 
     await call.message.answer(case_text_ten[variant_case])
     await DataCase.next()
-    await asyncio.sleep(1)
 
 
 async def carbon_question_three(message: types.Message, state: FSMContext):
+    await asyncio.sleep(1)
     if message.text.isdigit():
         await state.update_data(three=int(message.text))
         data = await state.get_data()  # тут хранится весь словарь состояний
         variant_case = data.get('variant')
         await message.answer(case_text_eleven[variant_case])
-        await asyncio.sleep(1)
 
         await DataCase.next()
     else:
@@ -111,6 +113,7 @@ async def carbon_question_three(message: types.Message, state: FSMContext):
 
 
 async def carbon_question_four(message: types.Message, state: FSMContext):
+    await asyncio.sleep(1)
     if message.text.isdigit():
         await state.update_data(four=int(message.text))
         data = await state.get_data()  # тут хранится весь словарь состояний
@@ -120,20 +123,21 @@ async def carbon_question_four(message: types.Message, state: FSMContext):
         result = calculation_two(variant_case, answer_a, answer_b)
         db.set_answer_two(message.from_user.id, result)
         await message.answer(
-            f'на {result:.2f} кг СО2 (углеродного следа) в год\nты сможешь снизить, используя аэратор',
+            f'<b>на {result:.2f} кг СО2 (углеродного следа) в год</b>\nты сможешь снизить, используя аэратор',
             parse_mode='HTML')
+        await asyncio.sleep(2)
 
         await message.answer(case_text_thirteen[variant_case])
         await asyncio.sleep(1)
 
         await message.answer(case_text_fourteen[variant_case], reply_markup=carbonInlineTwo[0])
-        await asyncio.sleep(1)
     else:
         await message.answer('Введите целое число.')
 
 
 async def carbon_inline_keyboard_two(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
+    await asyncio.sleep(1)
     data = await state.get_data()  # тут хранится весь словарь состояний
     variant_case = data.get('variant')
 
@@ -170,8 +174,28 @@ async def carbon_feedback(message: types.Message, state: FSMContext):
     else:
         await state.finish()
         db.set_feedback(message.from_user.id, txt)
+        db.set_status(message.from_user.id, 1)
         await asyncio.sleep(1)
         await message.answer('Спасибо большое за отзыв!')
+        await asyncio.sleep(2)
+        link_one = hlink('Обучающее-исследование', 'https://xn----7sbbbhlfabd2ae8a6adj1ca5a4fzb5g.xn--p1ai/')
+        link_two = hlink('официальном сайте Благотворительного фонда “Татнефть', 'http://bf-tatneft.ru/fond/?1main')
+        link_three = hlink('сайте Всероссийского образовательного проекта “Образ. будущего“', 'https://obrazbudu.ru/')
+        link_four = hlink('сайте Интерактивного центра “Альметрика”', 'https://almetrika.ru/')
+        await message.answer(f'Мы собрали для тебя полезные ссылки, лови!\n\n'
+                             f'{link_one} - Сайт обучающего исследования “В поисках углеродного следа”.'
+                             f'На этом сайте будут выкладываться все результаты исследования школьников из 7 районов '
+                             f'Республики Татарстан, фото и видеоматериалы\n\n'
+                             f'На {link_two}'
+                             f'ты можешь ознакомиться со всеми программами и проектами БФ '
+                             f'“Татнефть” и в последующем принять участие в них\n\n'
+                             f'На {link_three} ты можешь следить за деятельностью проекта\n\n'
+                             f'На {link_four} ты можешь смотреть расписание мастер-классов и научно-познавательных экскурсий', disable_web_page_preview=True)
+        await asyncio.sleep(3)
+
+        await message.answer('Спасибо, что ты был сегодня с нами и прошел обучающее исследование '
+                             '“В поисках углеродного следа”\n\n'
+                             'До новых встреч!')
 
 
 def register_case_variant(dp: Dispatcher):
@@ -185,6 +209,8 @@ def register_case_variant(dp: Dispatcher):
     dp.register_message_handler(carbon_question_four, state=DataCase.QuestionFour)
     dp.register_callback_query_handler(carbon_inline_keyboard_two, text_contains='carbonInTwo',
                                        state=DataCase.QuestionFour)
-    dp.register_callback_query_handler(carbon_inline_keyboard_three, text_contains='carbonInThree', state=DataCase.QuestionFour)
-    dp.register_callback_query_handler(carbon_inline_keyboard_four, text_contains='carbonInFour', state=DataCase.QuestionFour)
+    dp.register_callback_query_handler(carbon_inline_keyboard_three, text_contains='carbonInThree',
+                                       state=DataCase.QuestionFour)
+    dp.register_callback_query_handler(carbon_inline_keyboard_four, text_contains='carbonInFour',
+                                       state=DataCase.QuestionFour)
     dp.register_message_handler(carbon_feedback, state=DataCase.FeedBack)

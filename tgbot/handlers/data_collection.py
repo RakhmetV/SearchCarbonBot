@@ -10,6 +10,7 @@ from tgbot.keyboards.inline import likeTheSet
 from tgbot.services.db import Database
 from tgbot.states.test import Data
 
+
 async def start_bot(call: CallbackQuery):
     await call.answer(cache_time=5)
     await call.message.answer('Для начала давай познакомимся!')
@@ -45,12 +46,17 @@ async def answer_name(message: types.Message, state: FSMContext):
 
 async def answer_education(message: types.Message, state: FSMContext):
     answer = message.text
-    await state.update_data(college=answer)
-    await asyncio.sleep(1)
-    await message.answer('На ваших столах вы можете найти листок с паролем')
-    await asyncio.sleep(1)
-    await message.answer('Введи пароль')
-    await Data.next()
+    if len(answer) > 60:
+        await message.answer(f'Количество допустимых символов: 60\nКоличество ваших символов: {len(answer)}')
+        await asyncio.sleep(1)
+        await message.answer(f'Сократите название')
+    else:
+        await state.update_data(college=answer)
+        await asyncio.sleep(1)
+        await message.answer('На ваших столах вы можете найти листок с паролем')
+        await asyncio.sleep(1)
+        await message.answer('Введи пароль')
+        await Data.next()
 
 
 async def answer_case_password(message: types.Message, state: FSMContext):
@@ -68,20 +74,36 @@ async def answer_case_password(message: types.Message, state: FSMContext):
                     college,
                     newdate,
                     team_selection[answer]
-                    )
+                    )  # добавляем нового пользователя
+
         variant = random.randint(0, 9)
-        while db.check_variant(newdate, team_selection[answer], variant):
-            variant = random.randint(0, 9)
-        db.set_variant(message.from_user.id, variant)
-        await message.answer(f'Вы в команда под номером {team_selection[answer]}')
-        await message.answer(f'Супер, ты получаешь исследование по теме <b>{team_name[variant]}</b>', parse_mode='HTML')
+        if db.counting_variant_case(team_selection[answer], newdate)[0][0] > 10:
+            await message.answer(f'Количество людей в этой команде превысило 10\nПожалуйста, попробуйте другой пароль')
+        else:
+            check = False
+            while db.check_variant(newdate, team_selection[answer], variant):
+                if db.counting_variant_case(team_selection[answer], newdate)[0][0] > 10:
+                    check = True
+                    break
+                else:
+                    variant = random.randint(0, 9)
 
-        await state.finish()
+            if check:
+                await message.answer(
+                    f'Количество людей в этой команде превысило 10\nПожалуйста, попробуйте другой пароль')
+            else:
+                db.set_variant(message.from_user.id, variant)
+                await message.answer(f'Вы в команде под номером {team_selection[answer]}')
+                await asyncio.sleep(1)
 
-        await asyncio.sleep(1)
-        await message.answer('Назови тему исследования организатору. Он выдаст тебе набор для исследования')
-        await asyncio.sleep(3)
-        await message.answer('Как тебе набор?', reply_markup=likeTheSet)
+                await message.answer(f'Супер, ты получаешь исследование по теме <b>{team_name[variant]}</b>',
+                                     parse_mode='HTML')
+                await asyncio.sleep(1)
+
+                await state.finish()  # очищаем позицию
+                await message.answer('Назови тему исследования организатору. Он выдаст тебе набор для исследования')
+                await asyncio.sleep(3)
+                await message.answer('Как тебе набор?', reply_markup=likeTheSet)
     else:
         await message.answer('Вы ввели неправильный пароль. Введите пароль снова')
 
