@@ -1,7 +1,7 @@
 import asyncio
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
-from aiogram.types import CallbackQuery
+from aiogram.types import CallbackQuery, InputFile
 
 from tgbot.keyboards.inline import researchesStart, carbon_footprint, carbonFootprintTest, carbonFootprintAnswer
 from tgbot.states.test import Data
@@ -11,7 +11,10 @@ async def researches_start(call: CallbackQuery):
     await call.answer(cache_time=5)
 
     # Фото Никиты
-    await call.message.answer('Я очень рад, что тебе понравился набор. Давай его распаковывать :)')
+    photo = InputFile("nikita.png")
+
+    await call.message.answer_photo(photo, caption='Я очень рад, что тебе понравился набор. Давай его распаковывать :)')
+    #await call.message.answer('Я очень рад, что тебе понравился набор. Давай его распаковывать :)')
 
     await asyncio.sleep(1)
     await call.message.answer(
@@ -23,7 +26,12 @@ async def researches_start(call: CallbackQuery):
 
 async def studying_the_topic(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await call.message.answer('Слышал ли ты когда нибудь об углеродном следе?', reply_markup=carbon_footprint)
+
+    #Фото Яны
+    photo = InputFile("yana.png")
+
+    await call.message.answer_photo(photo, caption='Слышал ли ты когда нибудь об углеродном следе?', reply_markup=carbon_footprint)
+    #await call.message.answer('Слышал ли ты когда нибудь об углеродном следе?', reply_markup=carbon_footprint)
     await asyncio.sleep(1)
 
 
@@ -35,9 +43,9 @@ async def carbon_footprint_info(call: CallbackQuery):
     await asyncio.sleep(1)
 
     await call.message.answer(
-        'Сами по себе парниковые газы не несут вреда, но они усиливают естественное явление - парниковый эффект.'
-        ' Этот эффект позволяет поддерживать комфортную температуру для жизни на Земле. '
-        'Но увеличение концентрации парниковых газов приводит к изменению климата и глобальному потеплению.')
+        'Сами по себе парниковые газы не несут вреда, но они усиливают естественное явление - парниковый эффект. '
+        'Этот эффект позволяет поддерживать комфортную температуру для жизни на Земле. '
+        'Но увеличение концентрации парниковых газов сопутствуют изменению климата на Земле')
     await asyncio.sleep(1)
     await call.message.answer('Давай повторим изученное:\n'
                               'Какой газ не входит в состав парниковых газов?', reply_markup=carbonFootprintTest)
@@ -50,11 +58,19 @@ async def carbon_footprint_test(call: CallbackQuery):
     await asyncio.sleep(1)
 
     #Фото Тимура
-    await call.message.answer('А еще углеродный след бывает прямым и косвенным. '
+    photo = InputFile("timyr.png")
+
+    await call.message.answer_photo(photo, caption='А еще углеродный след бывает прямым и косвенным. '
                               'Например, поездка на машине, использование газа для готовки еды - это прямые выбросы. '
                               'А покупка игрушечной машины, которая производилась на предприятии, где использовалось '
                               'тепло и электроэнергию на изготовление игрушечной машины, а еще и ее доставка до места '
                               'продажи - это косвенные выбросы.')
+    await asyncio.sleep(1)
+    # await call.message.answer('А еще углеродный след бывает прямым и косвенным. '
+    #                           'Например, поездка на машине, использование газа для готовки еды - это прямые выбросы. '
+    #                           'А покупка игрушечной машины, которая производилась на предприятии, где использовалось '
+    #                           'тепло и электроэнергию на изготовление игрушечной машины, а еще и ее доставка до места '
+    #                           'продажи - это косвенные выбросы.')
 
     await call.message.answer('Если мы оставляем углеродный след, то значит, '
                               'мы сами же можем сделать так, чтобы его было меньше. '
@@ -68,11 +84,20 @@ async def carbon_footprint_test_answer(call: CallbackQuery):
     await asyncio.sleep(1)
 
     # Фото Тимура
-    await call.message.answer('А еще углеродный след бывает прямым и косвенным. '
-                              'Например, поездка на машине, использование газа для готовки еды - это прямые выбросы. '
-                              'А покупка игрушечной машины, которая производилась на предприятии, где использовалось '
-                              'тепло и электроэнергию на изготовление игрушечной машины, а еще и ее доставка до места '
-                              'продажи - это косвенные выбросы.')
+    photo = InputFile("timyr.png")
+
+    await call.message.answer_photo(photo, caption='А еще углеродный след бывает прямым и косвенным. '
+                                                   'Например, поездка на машине, использование газа для готовки еды - это прямые выбросы. '
+                                                   'А покупка игрушечной машины, которая производилась на предприятии, где использовалось '
+                                                   'тепло и электроэнергию на изготовление игрушечной машины, а еще и ее доставка до места '
+                                                   'продажи - это косвенные выбросы.')
+    await asyncio.sleep(1)
+
+    # await call.message.answer('А еще углеродный след бывает прямым и косвенным. '
+    #                           'Например, поездка на машине, использование газа для готовки еды - это прямые выбросы. '
+    #                           'А покупка игрушечной машины, которая производилась на предприятии, где использовалось '
+    #                           'тепло и электроэнергию на изготовление игрушечной машины, а еще и ее доставка до места '
+    #                           'продажи - это косвенные выбросы.')
 
     await call.message.answer('Если мы оставляем углеродный след, то значит, '
                               'мы сами же можем сделать так, чтобы его было меньше. '

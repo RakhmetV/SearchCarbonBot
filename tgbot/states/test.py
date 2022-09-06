@@ -18,6 +18,7 @@ class Data(StatesGroup):
 class DataCase(StatesGroup):
     Variant = State()
     QuestionOne = State()
+    StateC = State()
     QuestionTwo = State()
     QuestionThree = State()
     QuestionFour = State()

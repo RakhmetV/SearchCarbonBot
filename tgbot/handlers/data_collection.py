@@ -20,43 +20,47 @@ async def start_bot(call: CallbackQuery):
 
 
 async def answer_name(message: types.Message, state: FSMContext):
-    answer = message.text
+    data = await state.get_data()  # тут хранится весь словарь состояний
+    if not bool(data.get('name')):
+        answer = message.text
 
-    # записываем ответ в state
-    await state.update_data(name=answer)
+        # записываем ответ в state
+        await state.update_data(name=answer)
 
-    # записываем ответ в state Вариант 2
-    # await state.update_data(
-    #     {'answear1':answer}
-    # )
+        # записываем ответ в state Вариант 2
+        # await state.update_data(
+        #     {'answear1':answer}
+        # )
 
-    # записываем ответ в state Вариант 3
-    # async with state.proxy() as data:
-    #     data['answer1'] = answer
-    # Удобно, если нужно сделать data['answer1']+=1
-    # или data['list'].append(1), т.к не нужно сначала доставать из стейта. а потом задавать
+        # записываем ответ в state Вариант 3
+        # async with state.proxy() as data:
+        #     data['answer1'] = answer
+        # Удобно, если нужно сделать data['answer1']+=1
+        # или data['list'].append(1), т.к не нужно сначала доставать из стейта. а потом задавать
 
-    await message.answer(f'Приятно познакомиться, {answer}!')
-    await asyncio.sleep(1)
-    await message.answer("""Из какого ты учебного заведения? Напиши название учебного заведения
-    
-Например, Школа №2, Инженерный лицей, Гимназия №39""")
-    await Data.next()
+        await message.answer(f'Приятно познакомиться, {answer}!')
+        await asyncio.sleep(1)
+        await message.answer("""Из какого ты учебного заведения? Напиши название учебного заведения
+        
+    Например, Школа №2, Инженерный лицей, Гимназия №39""")
+        await Data.next()
 
 
 async def answer_education(message: types.Message, state: FSMContext):
-    answer = message.text
-    if len(answer) > 60:
-        await message.answer(f'Количество допустимых символов: 60\nКоличество ваших символов: {len(answer)}')
-        await asyncio.sleep(1)
-        await message.answer(f'Сократите название')
-    else:
-        await state.update_data(college=answer)
-        await asyncio.sleep(1)
-        await message.answer('На ваших столах вы можете найти листок с паролем')
-        await asyncio.sleep(1)
-        await message.answer('Введи пароль')
-        await Data.next()
+    data = await state.get_data()  # тут хранится весь словарь состояний
+    if not bool(data.get('college')):
+        answer = message.text
+        if len(answer) > 60:
+            await message.answer(f'Количество допустимых символов: 60\nКоличество ваших символов: {len(answer)}')
+            await asyncio.sleep(1)
+            await message.answer(f'Сократите название')
+        else:
+            await state.update_data(college=answer)
+            await asyncio.sleep(1)
+            await message.answer('На ваших столах вы можете найти листок с паролем')
+            await asyncio.sleep(1)
+            await message.answer('Введи пароль')
+            await Data.next()
 
 
 async def answer_case_password(message: types.Message, state: FSMContext):

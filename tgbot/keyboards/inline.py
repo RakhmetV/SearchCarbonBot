@@ -91,14 +91,113 @@ carbonInlineOne = {
     0: InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text='😍', callback_data='carbonInOne')
+                InlineKeyboardButton(text='🤗', callback_data='carbonInOne')
             ],
             [
                 InlineKeyboardButton(text='👍', callback_data='carbonInOne')
             ]
         ],
         row_width=1
-    )
+    ),
+    1: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='🤗', callback_data='carbonInOne')
+            ],
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInOne')
+            ]
+        ],
+        row_width=1
+    ),
+    2: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='😍', callback_data='carbonInOne')
+            ],
+            [
+                InlineKeyboardButton(text='🙂', callback_data='carbonInOne')
+            ]
+        ],
+        row_width=1
+    ),
+    3: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='😍', callback_data='carbonInOne')
+            ],
+            [
+                InlineKeyboardButton(text='🙂', callback_data='carbonInOne')
+            ]
+        ],
+        row_width=1
+    ),
+    4: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='🤗', callback_data='carbonInOne')
+            ],
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInOne')
+            ]
+        ],
+        row_width=1
+    ),
+    5: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='🤗', callback_data='carbonInOne')
+            ],
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInOne')
+            ]
+        ],
+        row_width=1
+    ),
+    6: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='😍', callback_data='carbonInOne')
+            ],
+            [
+                InlineKeyboardButton(text='🙂', callback_data='carbonInOne')
+            ]
+        ],
+        row_width=1
+    ),
+    7: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='🤗', callback_data='carbonInOne')
+            ],
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInOne')
+            ]
+        ],
+        row_width=1
+    ),
+    8: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='🤗', callback_data='carbonInOne')
+            ],
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInOne')
+            ]
+        ],
+        row_width=1
+    ),
+    9: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='🤗', callback_data='carbonInOne')
+            ],
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInOne')
+            ]
+        ],
+        row_width=1
+    ),
 }
 
 carbonInlineTwo = {
@@ -112,7 +211,109 @@ carbonInlineTwo = {
             ]
         ],
         row_width=1
-    )
+    ),
+    1: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInTwo')
+            ],
+            [
+                InlineKeyboardButton(text='👎', callback_data='carbonInTwo')
+            ]
+        ],
+        row_width=1
+    ),
+    2: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInTwo')
+            ],
+            [
+                InlineKeyboardButton(text='👎', callback_data='carbonInTwo')
+            ]
+        ],
+        row_width=1
+    ),
+    3: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInTwo')
+            ],
+            [
+                InlineKeyboardButton(text='👎', callback_data='carbonInTwo')
+            ]
+        ],
+        row_width=1
+    ),
+    4: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='да!', callback_data='carbonInTwo')
+            ],
+            [
+                InlineKeyboardButton(text='редко', callback_data='carbonInTwo')
+            ],
+            [
+                InlineKeyboardButton(text='никогда не ездил', callback_data='carbonInTwo')
+            ]
+        ],
+        row_width=1
+    ),
+    5: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInTwo')
+            ],
+            [
+                InlineKeyboardButton(text='👎', callback_data='carbonInTwo')
+            ]
+        ],
+        row_width=1
+    ),
+    6: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInTwo')
+            ],
+            [
+                InlineKeyboardButton(text='👎', callback_data='carbonInTwo')
+            ]
+        ],
+        row_width=1
+    ),
+    7: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInTwo')
+            ],
+            [
+                InlineKeyboardButton(text='👎', callback_data='carbonInTwo')
+            ]
+        ],
+        row_width=1
+    ),
+    8: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInTwo')
+            ],
+            [
+                InlineKeyboardButton(text='👎', callback_data='carbonInTwo')
+            ]
+        ],
+        row_width=1
+    ),
+    9: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='👍', callback_data='carbonInTwo')
+            ],
+            [
+                InlineKeyboardButton(text='👎', callback_data='carbonInTwo')
+            ]
+        ],
+        row_width=1
+    ),
 }
 carbonInlineThree = {
     0: InlineKeyboardMarkup(
@@ -122,6 +323,105 @@ carbonInlineThree = {
             ],
             [
                 InlineKeyboardButton(text='Нет, не оставляю', callback_data='carbonInThree')
+            ]
+        ],
+        row_width=1
+    ),
+    1: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Да, но буду менять свою привычку!', callback_data='carbonInThree')
+            ],
+            [
+                InlineKeyboardButton(text='Нет, не оставляю', callback_data='carbonInThree')
+            ]
+        ],
+        row_width=1
+    ),
+    2: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Да, но буду менять свою привычку!', callback_data='carbonInThree')
+            ],
+            [
+                InlineKeyboardButton(text='Нет, не оставляю', callback_data='carbonInThree')
+            ]
+        ],
+        row_width=1
+    ),
+    3: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Да, но буду менять свою привычку!', callback_data='carbonInThree')
+            ],
+            [
+                InlineKeyboardButton(text='Нет, не оставляю', callback_data='carbonInThree')
+            ]
+        ],
+        row_width=1
+    ),
+    4: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Да, но буду менять свою привычку!', callback_data='carbonInThree')
+            ],
+            [
+                InlineKeyboardButton(text='Нет, не оставляю', callback_data='carbonInThree')
+            ]
+        ],
+        row_width=1
+    ),
+    5: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Да, но буду менять свою привычку!', callback_data='carbonInThree')
+            ],
+            [
+                InlineKeyboardButton(text='Нет, не оставляю', callback_data='carbonInThree')
+            ]
+        ],
+        row_width=1
+    ),
+    6: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Да, но буду менять свою привычку!', callback_data='carbonInThree')
+            ],
+            [
+                InlineKeyboardButton(text='Нет, не оставляю', callback_data='carbonInThree')
+            ]
+        ],
+        row_width=1
+    ),
+    7: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Да, но буду менять свою привычку!', callback_data='carbonInThree')
+            ],
+            [
+                InlineKeyboardButton(text='Нет, не оставляю', callback_data='carbonInThree')
+            ]
+        ],
+        row_width=1
+    ),
+    8: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Да, но буду менять свою привычку!', callback_data='carbonInThree')
+            ],
+            [
+                InlineKeyboardButton(text='Нет, не оставляю', callback_data='carbonInThree')
+            ]
+        ],
+        row_width=1
+    ),
+    9: InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Да, конечно, это очень важно ', callback_data='carbonInThree')
+            ],
+            [
+                InlineKeyboardButton(text='Cтараюсь!', callback_data='carbonInThree')
             ]
         ],
         row_width=1

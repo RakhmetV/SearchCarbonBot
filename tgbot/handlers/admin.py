@@ -17,7 +17,7 @@ async def admin_menu(message: Message):
     db = Database('database.db')
     # ---------------------
     if message.text == 'Пройти интерактив':
-        await message.answer('Ты уже проходил исследование)', reply_markup=interactive_menu)
+        await message.answer('Интерактив', reply_markup=interactive_menu)
 
     # ---------------------
     elif message.text == 'Выгрузить данные Exel':
@@ -111,9 +111,10 @@ async def admin_menu(message: Message):
                                'Ответ на второй вопрос': answer_two,
                                'Отзыв': feedback})
             df.to_excel('./database_exel.xlsx', index=False)
-            exel_file = open('database_exel.xlsx', 'rb')
-            await message.answer_document(exel_file)
-            exel_file.close()
+
+            with open('database_exel.xlsx', 'rb') as exel_file:
+                await message.answer_document(exel_file)
+                exel_file.close()
         else:
             await message.answer('Никто не проходил интерактив')
 
