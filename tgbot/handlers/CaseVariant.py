@@ -35,8 +35,7 @@ async def carbon_footprint_answer(call: CallbackQuery, state: FSMContext):
     await asyncio.sleep(2)
     data = await state.get_data()  # тут хранится весь словарь состояний
     variant_case = data.get('variant')
-    print(bool(data.get('variant')))
-    print(bool(data.get('aaa')))
+
     await call.message.answer(case_text_one[variant_case])
     await asyncio.sleep(1)
 
@@ -134,7 +133,7 @@ async def carbon_question_two(message: types.Message, state: FSMContext):
                     if variant_case == 7:
                         answer_a = data.get('one')
                         answer_b = data.get('c')
-                        result = fabs((answer_a * answer_b * 12 * 3000 - int(message.text) * 12 * 66) / 1000)
+                        result = fabs((answer_a * answer_b * 12 * 3000/60 - int(message.text) * 12 * 66) / 1000)
                         db.set_answer_one(message.from_user.id, result)
                         await message.answer(
                             f'<b>На {result:.2f} кг СО2 (углеродного следа) в год</b>\n{case_text_six[variant_case]}',

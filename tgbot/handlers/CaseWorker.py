@@ -3,7 +3,8 @@ from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery, InputFile
 
-from tgbot.keyboards.inline import researchesStart, carbon_footprint, carbonFootprintTest, carbonFootprintAnswer
+from tgbot.keyboards.inline import researchesStart, carbon_footprint, carbonFootprintTest, carbonFootprintAnswer, \
+    inline_interaction_three
 from tgbot.states.test import Data
 
 
@@ -13,8 +14,7 @@ async def researches_start(call: CallbackQuery):
     # Фото Никиты
     photo = InputFile("nikita.png")
 
-    await call.message.answer_photo(photo, caption='Я очень рад, что тебе понравился набор. Давай его распаковывать :)')
-    #await call.message.answer('Я очень рад, что тебе понравился набор. Давай его распаковывать :)')
+    await call.message.answer_photo(photo, caption='Я очень рад, что тебе понравился чемоданчик. Давай его распаковывать', reply_markup=inline_interaction_three)
 
     await asyncio.sleep(1)
     await call.message.answer(
