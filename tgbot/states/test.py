@@ -16,6 +16,7 @@ class Data(StatesGroup):
     College = State()
     Hobbies = State()
     Favorite_subject = State()
+    Eco = State()
     PasswordCase = State()
 
 

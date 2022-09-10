@@ -8,6 +8,7 @@ start_bot_keyboard = InlineKeyboardMarkup(
     ],
     row_width=1
 )
+
 # ---------------------------------------------
 acquaintance_bot = InlineKeyboardMarkup(
     inline_keyboard=[
@@ -57,6 +58,24 @@ description_add_hero = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(text='Вступить в команду', callback_data='AddUserInComand')
+        ]
+    ],
+    row_width=1
+)
+
+description_eco = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Очень, я следую многим эко-привычкам', callback_data='ecoSearch')
+        ],
+        [
+            InlineKeyboardButton(text='Да, мне интересно', callback_data='ecoSearch')
+        ],
+        [
+            InlineKeyboardButton(text='Еще не доводилось интересоваться', callback_data='ecoSearch')
+        ],
+        [
+            InlineKeyboardButton(text='Не интересуюсь', callback_data='ecoSearch')
         ]
     ],
     row_width=1
@@ -166,6 +185,37 @@ carbon_footprint = InlineKeyboardMarkup(
         ],
         [
             InlineKeyboardButton(text='Нет', callback_data='carbonfootprint')
+        ]
+    ],
+    row_width=1
+)
+carbon_heard = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Да, нам говорили на уроках химии', callback_data='carbonheard')
+        ],
+        [
+            InlineKeyboardButton(text='Еще не слышал', callback_data='carbonheard')
+        ]
+    ],
+    row_width=1
+)
+
+carbon_greenhouse_effect = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Позволяет поддерживать комфортную температуру для жизни на Земле',
+                                 callback_data='greenhouse:true')
+        ],
+        [
+            InlineKeyboardButton(text='Чтобы не запариваться по пустякам', callback_data='greenhouse:false')
+        ],
+        [
+            InlineKeyboardButton(text='Для выделения пара из чайника', callback_data='greenhouse:false')
+        ],
+        [
+            InlineKeyboardButton(text='Он регулирует приливы и отливы в водоемах Земли',
+                                 callback_data='greenhouse:false')
         ]
     ],
     row_width=1
