@@ -17,7 +17,7 @@ from tgbot.services.db import Database
 
 logger = logging.getLogger(__name__)
 
-
+#commit
 def register_all_middlewares(dp, config):
     dp.setup_middleware(EnvironmentMiddleware(config=config))
 
