@@ -1,9 +1,10 @@
 import asyncio
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
-from aiogram.types import CallbackQuery, InputFile
+from aiogram.types import CallbackQuery
 
-from tgbot.keyboards.inline import researchesStart, carbon_footprint, carbonFootprintTest, carbonFootprintAnswer
+from tgbot.keyboards.inline import researchesStart, carbon_footprint, carbonFootprintTest, carbonFootprintAnswer, \
+    inline_interaction_three
 from tgbot.states.test import Data
 
 
@@ -11,15 +12,21 @@ async def researches_start(call: CallbackQuery):
     await call.answer(cache_time=5)
 
     # Фото Никиты
-    photo = InputFile("nikita.png")
 
-    await call.message.answer_photo(photo, caption='Я очень рад, что тебе понравился набор. Давай его распаковывать :)')
-    #await call.message.answer('Я очень рад, что тебе понравился набор. Давай его распаковывать :)')
+    await call.message.answer('Я очень рад, что тебе понравился набор. '
+                                                   'Давай его распаковывать :)',
+                                    reply_markup=inline_interaction_three)
 
     await asyncio.sleep(1)
     await call.message.answer(
-        'Внутри набора лежат все необходимое, которое поможет тебе провести исследование: письмо-приветствие, конверт, бандана и полезный подарок')
+        'Внутри набора лежат все необходимое, которое поможет тебе провести исследование: '
+        'письмо-приветствие, секретный конверт, бандана и полезный подарок')
     await asyncio.sleep(1)
+
+    await call.message.answer('Для начала прочитай письмо-приветствие')
+    await asyncio.sleep(1)
+
+
     await call.message.answer('Ну что, перейдем к исследованию?', reply_markup=researchesStart)
     await asyncio.sleep(1)
 
@@ -27,11 +34,11 @@ async def researches_start(call: CallbackQuery):
 async def studying_the_topic(call: CallbackQuery):
     await call.answer(cache_time=5)
 
-    #Фото Яны
-    photo = InputFile("yana.png")
+    # Фото Яны
 
-    await call.message.answer_photo(photo, caption='Слышал ли ты когда нибудь об углеродном следе?', reply_markup=carbon_footprint)
-    #await call.message.answer('Слышал ли ты когда нибудь об углеродном следе?', reply_markup=carbon_footprint)
+    await call.message.answer('Слышал ли ты когда нибудь об углеродном следе?',
+                                    reply_markup=carbon_footprint)
+    # await call.message.answer('Слышал ли ты когда нибудь об углеродном следе?', reply_markup=carbon_footprint)
     await asyncio.sleep(1)
 
 
@@ -57,14 +64,13 @@ async def carbon_footprint_test(call: CallbackQuery):
     await call.message.answer('Ошибочка, на самом деле, сернистый газ H2S  не входит в состав парниковых газов')
     await asyncio.sleep(1)
 
-    #Фото Тимура
-    photo = InputFile("timyr.png")
+    # Фото Тимура
 
-    await call.message.answer_photo(photo, caption='А еще углеродный след бывает прямым и косвенным. '
-                              'Например, поездка на машине, использование газа для готовки еды - это прямые выбросы. '
-                              'А покупка игрушечной машины, которая производилась на предприятии, где использовалось '
-                              'тепло и электроэнергию на изготовление игрушечной машины, а еще и ее доставка до места '
-                              'продажи - это косвенные выбросы.')
+    await call.message.answer('А еще углеродный след бывает прямым и косвенным. '
+                                                   'Например, поездка на машине, использование газа для готовки еды - это прямые выбросы. '
+                                                   'А покупка игрушечной машины, которая производилась на предприятии, где использовалось '
+                                                   'тепло и электроэнергию на изготовление игрушечной машины, а еще и ее доставка до места '
+                                                   'продажи - это косвенные выбросы.')
     await asyncio.sleep(1)
     # await call.message.answer('А еще углеродный след бывает прямым и косвенным. '
     #                           'Например, поездка на машине, использование газа для готовки еды - это прямые выбросы. '
@@ -84,9 +90,8 @@ async def carbon_footprint_test_answer(call: CallbackQuery):
     await asyncio.sleep(1)
 
     # Фото Тимура
-    photo = InputFile("timyr.png")
 
-    await call.message.answer_photo(photo, caption='А еще углеродный след бывает прямым и косвенным. '
+    await call.message.answero('А еще углеродный след бывает прямым и косвенным. '
                                                    'Например, поездка на машине, использование газа для готовки еды - это прямые выбросы. '
                                                    'А покупка игрушечной машины, которая производилась на предприятии, где использовалось '
                                                    'тепло и электроэнергию на изготовление игрушечной машины, а еще и ее доставка до места '
@@ -102,7 +107,6 @@ async def carbon_footprint_test_answer(call: CallbackQuery):
     await call.message.answer('Если мы оставляем углеродный след, то значит, '
                               'мы сами же можем сделать так, чтобы его было меньше. '
                               '\nДа, ведь?', reply_markup=carbonFootprintAnswer)
-
 
 
 def register_case_worker(dp: Dispatcher):

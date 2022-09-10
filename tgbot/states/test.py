@@ -10,8 +10,12 @@ class Test(StatesGroup):
 
 
 class Data(StatesGroup):
+    Password = State()
     Name = State()
-    EducationalInstitution = State()
+    District = State()
+    College = State()
+    Hobbies = State()
+    Favorite_subject = State()
     PasswordCase = State()
 
 

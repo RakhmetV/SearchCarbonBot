@@ -8,8 +8,114 @@ start_bot_keyboard = InlineKeyboardMarkup(
     ],
     row_width=1
 )
+# ---------------------------------------------
+acquaintance_bot = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Давай', callback_data='acquaintance')
+        ]
+    ],
+    row_width=1
+)
 
-likeTheSet = InlineKeyboardMarkup(
+description_Nikita = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Привет, Никита', callback_data='helloNikita')
+        ]
+    ],
+    row_width=1
+)
+description_Gulya = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Привет, Гуля', callback_data='helloGulya')
+        ]
+    ],
+    row_width=1
+)
+
+description_Yana = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Привет, Яна', callback_data='helloYana')
+        ]
+    ],
+    row_width=1
+)
+
+description_Timyr = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Приятно познакомиться, Тимур', callback_data='helloTimyr')
+        ]
+    ],
+    row_width=1
+)
+
+description_add_hero = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Вступить в команду', callback_data='AddUserInComand')
+        ]
+    ],
+    row_width=1
+)
+# ---------------------------------------------
+inline_password_one = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Да', callback_data='inlinePassOne')
+        ],
+        [
+            InlineKeyboardButton(text='Еще жду', callback_data='inlinePassOne')
+        ]
+    ],
+    row_width=1
+)
+
+inline_password_two = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Да, нашел👌', callback_data='inlinePassTwo')
+        ],
+        [
+            InlineKeyboardButton(text='Еще в поиске👀', callback_data='inlinePassTwo')
+        ],
+        [
+            InlineKeyboardButton(text='Надо сверить формулу с организатором', callback_data='inlinePassTwo')
+        ]
+    ],
+    row_width=1
+)
+
+inline_password_three = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Да, нашел👌', callback_data='inlinePassThree')
+        ],
+        [
+            InlineKeyboardButton(text='Был в этой команде изначально🤟🏻', callback_data='inlinePassThree')
+        ]
+    ],
+    row_width=1
+)
+
+# ---------------------------------------------
+
+inline_interaction_one = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Получил', callback_data='inlineInteractOne')
+        ],
+        [
+            InlineKeyboardButton(text='Жду своей очереди', callback_data='inlineInteractOne')
+        ]
+    ],
+    row_width=1
+)
+
+inline_interaction_two = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(text='Вау', callback_data='likeSet')
@@ -19,13 +125,24 @@ likeTheSet = InlineKeyboardMarkup(
         ],
         [
             InlineKeyboardButton(text='Красиво', callback_data='likeSet')
-        ],
-        [
-            InlineKeyboardButton(text='Нормально', callback_data='likeSet')
         ]
     ],
     row_width=1
 )
+
+inline_interaction_three = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Обожаю делать распаковки', callback_data='inlineInteractThree')
+        ],
+        [
+            InlineKeyboardButton(text='Давай', callback_data='inlineInteractThree')
+        ]
+    ],
+    row_width=1
+)
+
+# ---------------------------------------------
 
 researchesStart = InlineKeyboardMarkup(
     inline_keyboard=[

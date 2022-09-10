@@ -42,10 +42,15 @@ class Database:
                 (user_id,)).fetchall()
             return result
 
-    def set_variant(self, user_id, variant):
+    def set_district(self, user_id, variant):
         with self.connection:
             return self.cursor.execute("UPDATE `users` SET `variant` = ? WHERE `user_id` = ?",
                                        (variant, user_id,))
+
+    def set_variant(self, user_id, district):
+        with self.connection:
+            return self.cursor.execute("UPDATE `users` SET `district` = ? WHERE `user_id` = ?",
+                                       (district, user_id,))
 
     # добавить ответ на вопрос 1
     def set_answer_one(self, user_id, answer_one):
