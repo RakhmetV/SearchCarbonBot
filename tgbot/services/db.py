@@ -6,11 +6,11 @@ class Database:
         self.connection = sqlite3.connect(db_file)
         self.cursor = self.connection.cursor()
 
-    def add_user(self, user_id, name, college, date, case_number):
+    def add_user(self, user_id, name, date):
         with self.connection:
             return self.cursor.execute(
-                "INSERT INTO `users` (`user_id`, `name`, `date`, `college`, `case_number`, `status`) VALUES (?, ?, ?, ?, ?, ?)",
-                (user_id, name, date, college, case_number, 0,))
+                "INSERT INTO `users` (`user_id`, `name`, `date`, `status`) VALUES (?, ?, ?, ?)",
+                (user_id, name, date, 0,))
 
     # поиск пользователя по его ID
     def user_exists(self, user_id):
@@ -46,6 +46,26 @@ class Database:
         with self.connection:
             return self.cursor.execute("UPDATE `users` SET `variant` = ? WHERE `user_id` = ?",
                                        (variant, user_id,))
+
+    def set_college(self, user_id, college):
+        with self.connection:
+            return self.cursor.execute("UPDATE `users` SET `college` = ? WHERE `user_id` = ?",
+                                       (college, user_id,))
+
+    def set_case_number(self, user_id, case_number):
+        with self.connection:
+            return self.cursor.execute("UPDATE `users` SET `case_number` = ? WHERE `user_id` = ?",
+                                       (case_number, user_id,))
+
+    def set_district(self, user_id, district):
+        with self.connection:
+            return self.cursor.execute("UPDATE `users` SET `district` = ? WHERE `user_id` = ?",
+                                       (district, user_id,))
+
+    def set_password(self, user_id, password):
+        with self.connection:
+            return self.cursor.execute("UPDATE `users` SET `password` = ? WHERE `user_id` = ?",
+                                       (password, user_id,))
 
     def set_variant(self, user_id, district):
         with self.connection:

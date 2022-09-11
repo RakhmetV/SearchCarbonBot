@@ -391,7 +391,7 @@ async def carbon_feedback(message: types.Message, state: FSMContext):
 
 
 def register_case_variant(dp: Dispatcher):
-    dp.register_callback_query_handler(carbon_footprint_answer, text_contains='carbonAnswer', state=None)
+    # dp.register_callback_query_handler(carbon_footprint_answer, text_contains='carbonAnswer', state=None)
     dp.register_message_handler(carbon_question_one, state=DataCase.QuestionOne)
     dp.register_message_handler(carbon_question_two, state=DataCase.QuestionTwo)
     dp.register_callback_query_handler(carbon_inline_keyboard_one, text_contains='carbonInOne',

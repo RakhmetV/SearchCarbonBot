@@ -17,7 +17,10 @@ class Data(StatesGroup):
     Hobbies = State()
     Favorite_subject = State()
     Eco = State()
-    PasswordCase = State()
+
+
+class DataPass(StatesGroup):
+    CasePassword = State()
 
 
 class DataCase(StatesGroup):
@@ -28,4 +31,3 @@ class DataCase(StatesGroup):
     QuestionThree = State()
     QuestionFour = State()
     FeedBack = State()
-

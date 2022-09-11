@@ -224,19 +224,42 @@ carbon_greenhouse_effect = InlineKeyboardMarkup(
 carbonFootprintTest = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='CO2', callback_data='carbonTest')
+            InlineKeyboardButton(text='CO2', callback_data='carbonTest:false')
         ],
         [
-            InlineKeyboardButton(text='H2O', callback_data='carbonTest')
+            InlineKeyboardButton(text='H2O', callback_data='carbonTest:false')
         ],
         [
-            InlineKeyboardButton(text='CH4', callback_data='carbonTest')
+            InlineKeyboardButton(text='CH4', callback_data='carbonTest:false')
         ],
         [
-            InlineKeyboardButton(text='N2O', callback_data='carbonTest')
+            InlineKeyboardButton(text='N2O', callback_data='carbonTest:false')
         ],
         [
-            InlineKeyboardButton(text='H2S', callback_data='carbonTesAnswer')
+            InlineKeyboardButton(text='H2S', callback_data='carbonTest:true')
+        ]
+    ],
+    row_width=1
+)
+carbon_bulochka = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Производство булочек с корицей', callback_data='bulochka:true')
+        ],
+        [
+            InlineKeyboardButton(text='Покупка булочек с корицей местного производства', callback_data='bulochka:false')
+        ]
+    ],
+    row_width=1
+)
+
+carbon_understand = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Да', callback_data='carbonundestand')
+        ],
+        [
+            InlineKeyboardButton(text='Не особо', callback_data='carbonundestand')
         ]
     ],
     row_width=1

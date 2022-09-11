@@ -28,7 +28,6 @@ async def acquaintance_fun(call: CallbackQuery):
                                         reply_markup=description_Nikita)
 
 
-
 async def helloNikita(call: CallbackQuery):
     await call.answer(cache_time=5)
     with open('gulya.png', 'rb') as photo:
@@ -61,13 +60,13 @@ async def helloYana(call: CallbackQuery):
 
     with open('timur.png', 'rb') as photo:
         await call.message.answer_photo(photo, caption='Привет, я Тимур\n\n'
-                                                   'Я увлекаюсь наукой, в будущем я точно стану ученым.'
-                                                   ' Кстати, лучший способ узнать что-то новое или создать '
-                                                   'свой проект — это исследование. Яна пригласила меня в '
-                                                   'команду, и я им предложил сделать формат проекта '
-                                                   'исследовательским. То есть, мы сами будем получать '
-                                                   'новые знания!',
-                                     reply_markup=description_Timyr)
+                                                       'Я увлекаюсь наукой, в будущем я точно стану ученым.'
+                                                       ' Кстати, лучший способ узнать что-то новое или создать '
+                                                       'свой проект — это исследование. Яна пригласила меня в '
+                                                       'команду, и я им предложил сделать формат проекта '
+                                                       'исследовательским. То есть, мы сами будем получать '
+                                                       'новые знания!',
+                                        reply_markup=description_Timyr)
 
 
 async def helloTimyr(call: CallbackQuery):
@@ -98,26 +97,11 @@ async def checkPassword(message: types.Message, state: FSMContext):
             await message.answer('Ты ввел неправильный код')
 
 
-
-
-
 async def answer_name(message: types.Message, state: FSMContext):
     data = await state.get_data()  # тут хранится весь словарь состояний
     if not bool(data.get('name')):
         answer = message.text
-
-        # записываем ответ в state
-
-        # записываем ответ в state Вариант 2
-        # await state.update_data(
-        #     {'answear1':answer}
-        # )
-
-        # записываем ответ в state Вариант 3
-        # async with state.proxy() as data:
-        #     data['answer1'] = answer
-        # Удобно, если нужно сделать data['answer1']+=1
-        # или data['list'].append(1), т.к не нужно сначала доставать из стейта. а потом задавать
+        await state.update_data(name=message.text)
 
         await message.answer(f'Приятно познакомиться, {answer}🥰')
         await asyncio.sleep(1)
@@ -128,22 +112,34 @@ async def answer_name(message: types.Message, state: FSMContext):
 
 async def answer_district(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
-    await call.message.answer('Выбери свое учебное заведение', reply_markup=college_inline_keyboard[call.data.split(':')[1]])
+    await call.message.answer('Выбери свое учебное заведение',
+                              reply_markup=college_inline_keyboard[call.data.split(':')[1]])
     await Data.next()
+
 
 async def answer_college(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
-    await call.message.answer('Напиши несколько своих увлечений')
+    await call.message.answer('Напиши несколько своих увлечений в одном предложении')
     await Data.next()
+
 
 async def answer_hobbies(message: types.Message, state: FSMContext):
-    #добавить увлечения в базу данных
-    await message.answer('Какой предмет в школе ты больше всего любишь?')
-    await Data.next()
+    # добавить увлечения в базу данных
+    if len(message.text) <= 150:
+        await message.answer('Какой предмет в школе ты больше всего любишь?')
+        await Data.next()
+    else:
+        await message.answer(f'Количество символов не должно превышать 150\n'
+                             f'Количество ваших символов: {len(message.text)}')
+
 
 async def answer_favorite_sub(message: types.Message, state: FSMContext):
-    await message.answer('Интересуешься ли ты экологией?', reply_markup=description_eco)
-    await Data.next()
+    if len(message.text) <= 50:
+        await message.answer('Интересуешься ли ты экологией?', reply_markup=description_eco)
+        await Data.next()
+    else:
+        await message.answer(f'Количество символов не должно превышать 150\n'
+                             f'Количество ваших символов: {len(message.text)}')
 
 
 async def answer_eco(call: CallbackQuery, state: FSMContext):
@@ -153,8 +149,6 @@ async def answer_eco(call: CallbackQuery, state: FSMContext):
     await call.message.answer('Слышал ли ты когда нибудь об углеродном следе?',
                               reply_markup=carbon_footprint)
     await state.finish()
-
-
 
 
 # async def answer_education(message: types.Message, state: FSMContext):
