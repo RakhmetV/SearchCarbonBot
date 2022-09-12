@@ -35,8 +35,7 @@ async def carbon_footprint_answer(call: CallbackQuery, state: FSMContext):
     await asyncio.sleep(2)
     data = await state.get_data()  # тут хранится весь словарь состояний
     variant_case = data.get('variant')
-    print(bool(data.get('variant')))
-    print(bool(data.get('aaa')))
+
     await call.message.answer(case_text_one[variant_case])
     await asyncio.sleep(1)
 

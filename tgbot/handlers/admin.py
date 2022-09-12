@@ -81,7 +81,7 @@ async def admin_menu(message: Message):
         else:
             await message.answer('Сегодня никто не проходил интерактив')
 
-     # ---------------------
+    # ---------------------
     elif message.text == 'За все время':  # Не готово еще
         if bool(len(db.get_user_all())):
             await message.answer('Данные за все время')

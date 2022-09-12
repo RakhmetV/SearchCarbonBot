@@ -5,9 +5,8 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
 from datetime import datetime
 
-from tgbot.handlers.message import team_selection, team_name, district_name
-from tgbot.keyboards.inline import inline_interaction_one, inline_interaction_two, inline_password_three, \
-    inline_password_one, inline_password_two, acquaintance_bot, description_Nikita, description_Gulya, description_Yana, \
+from tgbot.handlers.message import district_name
+from tgbot.keyboards.inline import acquaintance_bot, description_Nikita, description_Gulya, description_Yana, \
     description_Timyr, description_add_hero, description_eco, carbon_footprint
 from tgbot.keyboards.inline_college import district_rt, college_inline_keyboard
 from tgbot.services.db import Database

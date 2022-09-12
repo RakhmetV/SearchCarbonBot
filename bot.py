@@ -10,6 +10,7 @@ from tgbot.handlers.CaseVariant import register_case_variant
 from tgbot.handlers.CaseWorker import register_case_worker
 from tgbot.handlers.admin import register_admin
 from tgbot.handlers.data_collection import register_data_collection
+from tgbot.handlers.interaction_case import register_interaction_case
 from tgbot.handlers.life_situation import register_live_situation_worker
 from tgbot.handlers.password_write import register_password_write_worker
 from tgbot.handlers.user import register_user
@@ -36,6 +37,7 @@ def register_all_handlers(dp):
     register_case_worker(dp)
     register_live_situation_worker(dp)
     register_password_write_worker(dp)
+    register_interaction_case(dp)
     register_case_variant(dp)
 
 

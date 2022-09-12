@@ -23,6 +23,10 @@ class DataPass(StatesGroup):
     CasePassword = State()
 
 
+class InterPass(StatesGroup):
+    InterPassword = State()
+
+
 class DataCase(StatesGroup):
     Variant = State()
     QuestionOne = State()

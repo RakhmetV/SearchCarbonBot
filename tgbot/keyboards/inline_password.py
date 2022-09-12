@@ -15,7 +15,7 @@ inline_case_pass_one = InlineKeyboardMarkup(
 inline_case_pass_two = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Да, нашел👌', callback_data='CasePasswordTwo')
+            InlineKeyboardButton(text='Да, нашел👌', callback_data='CasePasswordTwo:yes')
         ],
         [
             InlineKeyboardButton(text='Еще в поиске👀', callback_data='CasePasswordTwo')

@@ -137,13 +137,13 @@ inline_interaction_one = InlineKeyboardMarkup(
 inline_interaction_two = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Вау', callback_data='likeSet')
+            InlineKeyboardButton(text='Вау', callback_data='inlineInteractTwo')
         ],
         [
-            InlineKeyboardButton(text='Прикольно', callback_data='likeSet')
+            InlineKeyboardButton(text='Прикольно', callback_data='inlineInteractTwo')
         ],
         [
-            InlineKeyboardButton(text='Красиво', callback_data='likeSet')
+            InlineKeyboardButton(text='Красиво', callback_data='inlineInteractTwo')
         ]
     ],
     row_width=1
@@ -156,6 +156,66 @@ inline_interaction_three = InlineKeyboardMarkup(
         ],
         [
             InlineKeyboardButton(text='Давай', callback_data='inlineInteractThree')
+        ]
+    ],
+    row_width=1
+)
+
+inline_interaction_four = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Да', callback_data='inlineInteractFour')
+        ],
+        [
+            InlineKeyboardButton(text='Еще нет', callback_data='inlineInteractFour')
+        ]
+    ],
+    row_width=1
+)
+
+inline_interaction_five = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Нашел все цифры', callback_data='inlineInteractFive')
+        ]
+    ],
+    row_width=1
+)
+
+inline_interaction_six = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Да', callback_data='inlineInteractSix')
+        ]
+    ],
+    row_width=1
+)
+
+inline_interaction_seven = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Крутяк', callback_data='inlineInteractSeven')
+        ]
+    ],
+    row_width=1
+)
+
+inline_interaction_eight = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Конверт открыт', callback_data='inlineInteractEight')
+        ]
+    ],
+    row_width=1
+)
+
+inline_interaction_nine = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Давайте уже начнем', callback_data='inlineInteractNine')
+        ],
+        [
+            InlineKeyboardButton(text='Да', callback_data='inlineInteractNine')
         ]
     ],
     row_width=1
