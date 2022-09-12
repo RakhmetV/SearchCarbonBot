@@ -1,5 +1,5 @@
 from aiogram import Dispatcher
-from aiogram.types import Message, InputFile
+from aiogram.types import Message, InputFile, ContentTypes
 import pandas as pd
 from datetime import datetime
 from openpyxl import load_workbook
@@ -8,6 +8,10 @@ from tgbot.keyboards.inline import start_bot_keyboard
 from tgbot.keyboards.keyboards_menu import start_menu, interactive_menu, exel_menu
 from tgbot.services.db import Database
 
+async def send_video(message: Message):
+    print(1)
+    await message.answer_video(video='BAACAgIAAxkBAAIO0mMfpJeKPKWoJ4B49nDgm4mRbVEVAAI4HQACkDkBSYSu39vwehxdKQQ')
+    print(2)
 
 async def admin_start(message: Message):
     await message.answer(f'Здравствуйте, {message.from_user.first_name}', reply_markup=start_menu)
@@ -120,6 +124,12 @@ async def admin_menu(message: Message):
     # await message.answer_photo(photo, caption='желаемый текст')
 
 
+async def video_id(message: Message):
+    await message.reply(message.video.file_id)
+
+
 def register_admin(dp: Dispatcher):
     dp.register_message_handler(admin_start, commands=["start"], state="*", is_admin=True)
+    dp.register_message_handler(send_video, commands=["video"], state="*", is_admin=True)
     dp.register_message_handler(admin_menu, state=None, is_admin=True)
+    dp.register_message_handler(video_id, content_types=ContentTypes.VIDEO, is_admin=True)

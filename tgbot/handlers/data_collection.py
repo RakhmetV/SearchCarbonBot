@@ -13,6 +13,8 @@ from tgbot.services.db import Database
 from tgbot.states.test import Data
 db = Database('database.db')
 
+
+
 async def start_bot(call: CallbackQuery):
     await call.answer(cache_time=5)
     await call.message.answer('Для начала познакомимся с командой', reply_markup=acquaintance_bot)
@@ -286,6 +288,7 @@ async def answer_eco(call: CallbackQuery, state: FSMContext):
 
 def register_data_collection(dp: Dispatcher):
     dp.register_callback_query_handler(start_bot, text_contains='start', state=None)
+
     dp.register_callback_query_handler(acquaintance_fun, text_contains='acquaintance', state=None)
     dp.register_callback_query_handler(helloNikita, text_contains='helloNikita', state=None)
     dp.register_callback_query_handler(helloGulya, text_contains='helloGulya', state=None)
@@ -299,6 +302,8 @@ def register_data_collection(dp: Dispatcher):
     dp.register_message_handler(answer_hobbies, state=Data.Hobbies)
     dp.register_message_handler(answer_favorite_sub, state=Data.Favorite_subject)
     dp.register_callback_query_handler(answer_eco, text_contains='ecoSearch', state=Data.Eco)
+
+
 
     # dp.register_message_handler(answer_education, state=Data.EducationalInstitution)
     # dp.register_callback_query_handler(inlinePasswordOne, text_contains='inlinePassOne',

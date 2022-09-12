@@ -29,6 +29,7 @@ class InterPass(StatesGroup):
 
 class AfterCasePass(StatesGroup):
     Password = State()
+    FeedBack = State()
 
 
 class DataCase(StatesGroup):
