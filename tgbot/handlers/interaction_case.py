@@ -92,6 +92,7 @@ async def interact_case_eight(call: CallbackQuery):
     await call.message.answer('Внутри чемодана есть конверт. Его нужно открыть', reply_markup=inline_interaction_eight)
     await asyncio.sleep(1)
 
+
 async def interact_case_nine(call: CallbackQuery):
     await call.answer(cache_time=5)
     await call.message.answer('Как ты видишь, внутри него лежит комикс и плакат\n\n'
@@ -104,6 +105,7 @@ async def interact_case_nine(call: CallbackQuery):
 
     await call.message.answer('Ну что, перейдем к исследованию?', reply_markup=inline_interaction_nine)
     await asyncio.sleep(1)
+
 
 def register_interaction_case(dp: Dispatcher):
     dp.register_callback_query_handler(interact_case_one, text_contains='inlineInteractOne', state=None)

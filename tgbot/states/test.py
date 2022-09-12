@@ -27,6 +27,10 @@ class InterPass(StatesGroup):
     InterPassword = State()
 
 
+class AfterCasePass(StatesGroup):
+    Password = State()
+
+
 class DataCase(StatesGroup):
     Variant = State()
     QuestionOne = State()
