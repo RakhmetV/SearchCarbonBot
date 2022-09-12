@@ -66,16 +66,16 @@ description_add_hero = InlineKeyboardMarkup(
 description_eco = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Очень, я следую многим эко-привычкам', callback_data='ecoSearch')
+            InlineKeyboardButton(text='Очень, я следую многим эко-привычкам', callback_data='ecoSearch:1')
         ],
         [
-            InlineKeyboardButton(text='Да, мне интересно', callback_data='ecoSearch')
+            InlineKeyboardButton(text='Да, мне интересно', callback_data='ecoSearch:2')
         ],
         [
-            InlineKeyboardButton(text='Еще не доводилось интересоваться', callback_data='ecoSearch')
+            InlineKeyboardButton(text='Еще не доводилось интересоваться', callback_data='ecoSearch:3')
         ],
         [
-            InlineKeyboardButton(text='Не интересуюсь', callback_data='ecoSearch')
+            InlineKeyboardButton(text='Не интересуюсь', callback_data='ecoSearch:4')
         ]
     ],
     row_width=1
@@ -181,10 +181,10 @@ researchesStart = InlineKeyboardMarkup(
 carbon_footprint = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Да', callback_data='carbonfootprint')
+            InlineKeyboardButton(text='Да', callback_data='carbonfootprint:Да')
         ],
         [
-            InlineKeyboardButton(text='Нет', callback_data='carbonfootprint')
+            InlineKeyboardButton(text='Нет', callback_data='carbonfootprint:Нет')
         ]
     ],
     row_width=1
@@ -224,16 +224,16 @@ carbon_greenhouse_effect = InlineKeyboardMarkup(
 carbonFootprintTest = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='CO2', callback_data='carbonTest:false')
+            InlineKeyboardButton(text='CO2', callback_data='carbonTest:CO2')
         ],
         [
-            InlineKeyboardButton(text='H2O', callback_data='carbonTest:false')
+            InlineKeyboardButton(text='H2O', callback_data='carbonTest:H2O')
         ],
         [
-            InlineKeyboardButton(text='CH4', callback_data='carbonTest:false')
+            InlineKeyboardButton(text='CH4', callback_data='carbonTest:CH4')
         ],
         [
-            InlineKeyboardButton(text='N2O', callback_data='carbonTest:false')
+            InlineKeyboardButton(text='N2O', callback_data='carbonTest:N2O')
         ],
         [
             InlineKeyboardButton(text='H2S', callback_data='carbonTest:true')
@@ -256,10 +256,10 @@ carbon_bulochka = InlineKeyboardMarkup(
 carbon_understand = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Да', callback_data='carbonundestand')
+            InlineKeyboardButton(text='Да', callback_data='carbonundestand:Да')
         ],
         [
-            InlineKeyboardButton(text='Не особо', callback_data='carbonundestand')
+            InlineKeyboardButton(text='Не особо', callback_data='carbonundestand:Не особо')
         ]
     ],
     row_width=1

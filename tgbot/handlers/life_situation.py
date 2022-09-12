@@ -38,7 +38,10 @@ async def live_situation_two(call: CallbackQuery):
 async def live_situation_three(call: CallbackQuery):
     await call.answer(cache_time=5)
     await call.message.answer(
-        'Поездка в школу - мы пользуемся средствами передвижения ежедневно: автомобили, автобусы, поезда,')
+        'Поездка в школу - Утро обычного школьника не обходится без '
+        'выбора способа передвижения до школы. Важно знать, что '
+        'каждый вид транспорта оставляет углеродный след, будь то: '
+        'автомобиль, троллейбус, автобус и т п.')
     await asyncio.sleep(1)
     await call.message.answer(
         'Школьные уроки -', reply_markup=inline_live_sit_three)
@@ -48,16 +51,33 @@ async def live_situation_three(call: CallbackQuery):
 async def live_situation_four(call: CallbackQuery):
     await call.answer(cache_time=5)
     await call.message.answer(
-        'Экскурсия на предприятие -')
+        'Экскурсия на предприятие - думаем, каждый из вас '
+        'немного знаком с промышленностью и вы знаете, '
+        'что она также влияет на окружающую среду. Каждое '
+        'предприятие с ответственностью подходит к этому вопросу.'
+        ' На различных площадках заводов выращиваются зеленые '
+        'гиганты - деревья, которые помогают снизить углеродный след')
     await asyncio.sleep(1)
 
     await call.message.answer(
-        'Увлечения, хобби -', reply_markup=inline_live_sit_four)
+        'Увлечения, хобби - у каждого из нас есть'
+        ' различные увлечения, способы проведения досуга. '
+        'И представляете, каждый из них оставляет за собой '
+        'углеродный след!  Есть много способов проведения '
+        'свободного времени не только с пользой для себя, но '
+        'и природе!', reply_markup=inline_live_sit_four)
     await asyncio.sleep(1)
 
 
 async def live_situation_five(call: CallbackQuery):
     await call.answer(cache_time=5)
+    await call.message.answer(
+        'Питание, продукты - все мы любим ходить в магазины за '
+        'различными вкусняшками, но это можно делать и с пользой '
+        'для природы. Дело в том, что покупая продукты мы можем '
+        'значительно снизить углеродный след !')
+    await asyncio.sleep(1)
+
     await call.message.answer(
         'Уборка по дому -', reply_markup=inline_live_sit_five)
     await asyncio.sleep(1)

@@ -42,7 +42,7 @@ class Database:
                 (user_id,)).fetchall()
             return result
 
-    def set_district(self, user_id, variant):
+    def set_variant(self, user_id, variant):
         with self.connection:
             return self.cursor.execute("UPDATE `users` SET `variant` = ? WHERE `user_id` = ?",
                                        (variant, user_id,))
@@ -67,10 +67,41 @@ class Database:
             return self.cursor.execute("UPDATE `users` SET `password` = ? WHERE `user_id` = ?",
                                        (password, user_id,))
 
-    def set_variant(self, user_id, district):
+    def set_hobby(self, user_id, hobby):
         with self.connection:
-            return self.cursor.execute("UPDATE `users` SET `district` = ? WHERE `user_id` = ?",
-                                       (district, user_id,))
+            return self.cursor.execute("UPDATE `users` SET `hobby` = ? WHERE `user_id` = ?",
+                                       (hobby, user_id,))
+
+    def set_favorite_subject(self, user_id, favorite_subject):
+        with self.connection:
+            return self.cursor.execute("UPDATE `users` SET `favorite_subject` = ? WHERE `user_id` = ?",
+                                       (favorite_subject, user_id,))
+
+    def set_interest_ecology(self, user_id, interest_ecology):
+        with self.connection:
+            return self.cursor.execute("UPDATE `users` SET `interest_ecology` = ? WHERE `user_id` = ?",
+                                       (interest_ecology, user_id,))
+
+    def set_studying_topic_one(self, user_id, studying_topic_one):
+        with self.connection:
+            return self.cursor.execute("UPDATE `users` SET `studying_topic_one` = ? WHERE `user_id` = ?",
+                                       (studying_topic_one, user_id,))
+
+    def set_studying_topic_two(self, user_id, studying_topic_two):
+        with self.connection:
+            return self.cursor.execute("UPDATE `users` SET `studying_topic_two` = ? WHERE `user_id` = ?",
+                                       (studying_topic_two, user_id,))
+
+    def set_studying_topic_three(self, user_id, studying_topic_three):
+        with self.connection:
+            return self.cursor.execute("UPDATE `users` SET `studying_topic_three` = ? WHERE `user_id` = ?",
+                                       (studying_topic_three, user_id,))
+
+    def set_studying_topic_four(self, user_id, studying_topic_four):
+        with self.connection:
+            return self.cursor.execute("UPDATE `users` SET `studying_topic_four` = ? WHERE `user_id` = ?",
+                                       (studying_topic_four, user_id,))
+
 
     # добавить ответ на вопрос 1
     def set_answer_one(self, user_id, answer_one):

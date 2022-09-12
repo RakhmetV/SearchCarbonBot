@@ -5,14 +5,14 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
 from datetime import datetime
 
-from tgbot.handlers.message import team_selection, team_name
+from tgbot.handlers.message import team_selection, team_name, district_name
 from tgbot.keyboards.inline import inline_interaction_one, inline_interaction_two, inline_password_three, \
     inline_password_one, inline_password_two, acquaintance_bot, description_Nikita, description_Gulya, description_Yana, \
     description_Timyr, description_add_hero, description_eco, carbon_footprint
 from tgbot.keyboards.inline_college import district_rt, college_inline_keyboard
 from tgbot.services.db import Database
 from tgbot.states.test import Data
-
+db = Database('database.db')
 
 async def start_bot(call: CallbackQuery):
     await call.answer(cache_time=5)
@@ -100,8 +100,12 @@ async def checkPassword(message: types.Message, state: FSMContext):
 async def answer_name(message: types.Message, state: FSMContext):
     data = await state.get_data()  # тут хранится весь словарь состояний
     if not bool(data.get('name')):
+        nowdate = datetime.now()
+        newdate = nowdate.strftime("%d/%m/%Y")
+
         answer = message.text
         await state.update_data(name=message.text)
+        db.add_user(message.from_user.id, answer, newdate)
 
         await message.answer(f'Приятно познакомиться, {answer}🥰')
         await asyncio.sleep(1)
@@ -112,6 +116,7 @@ async def answer_name(message: types.Message, state: FSMContext):
 
 async def answer_district(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
+    db.set_district(call.message.chat.id, district_name[call.data.split(':')[1]])
     await call.message.answer('Выбери свое учебное заведение',
                               reply_markup=college_inline_keyboard[call.data.split(':')[1]])
     await Data.next()
@@ -119,6 +124,7 @@ async def answer_district(call: CallbackQuery, state: FSMContext):
 
 async def answer_college(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
+    db.set_college(call.message.chat.id, call.data.split(':')[1])
     await call.message.answer('Напиши несколько своих увлечений в одном предложении')
     await Data.next()
 
@@ -126,6 +132,7 @@ async def answer_college(call: CallbackQuery, state: FSMContext):
 async def answer_hobbies(message: types.Message, state: FSMContext):
     # добавить увлечения в базу данных
     if len(message.text) <= 150:
+        db.set_hobby(message.from_user.id, message.text)
         await message.answer('Какой предмет в школе ты больше всего любишь?')
         await Data.next()
     else:
@@ -135,6 +142,8 @@ async def answer_hobbies(message: types.Message, state: FSMContext):
 
 async def answer_favorite_sub(message: types.Message, state: FSMContext):
     if len(message.text) <= 50:
+        db.set_favorite_subject(message.from_user.id, message.text)
+
         await message.answer('Интересуешься ли ты экологией?', reply_markup=description_eco)
         await Data.next()
     else:
@@ -144,6 +153,7 @@ async def answer_favorite_sub(message: types.Message, state: FSMContext):
 
 async def answer_eco(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
+    db.set_interest_ecology(call.message.chat.id, call.data.split(':')[1])
     await call.message.answer('Отлично, ты в нашей команде!')
     await asyncio.sleep(1)
     await call.message.answer('Слышал ли ты когда нибудь об углеродном следе?',
