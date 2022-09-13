@@ -203,7 +203,7 @@ inline_interaction_seven = InlineKeyboardMarkup(
 inline_interaction_eight = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Конверт открыт', callback_data='inlineInteractEight')
+            InlineKeyboardButton(text='Конверт открыт', callback_data='inliIterEight')
         ]
     ],
     row_width=1

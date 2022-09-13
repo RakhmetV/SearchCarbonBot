@@ -18,11 +18,11 @@ async def user_start(message: Message):
                              reply_markup=start_bot_keyboard)
 
 
-async def user_start(message: Message):
+async def user_del(message: Message):
     db.del_user(message.from_user.id)
     await message.answer('Ваши данные были удалены из БД')
 
 
 def register_user(dp: Dispatcher):
     dp.register_message_handler(user_start, commands=["start"], state="*")
-    dp.register_message_handler(user_start, commands=["del_user"], state="*")
+    dp.register_message_handler(user_del, commands=["del_user"], state="*")

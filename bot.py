@@ -15,6 +15,7 @@ from tgbot.handlers.interaction_case import register_interaction_case
 from tgbot.handlers.life_situation import register_live_situation_worker
 from tgbot.handlers.password_write import register_password_write_worker
 from tgbot.handlers.user import register_user
+from tgbot.handlers.variant_case import register_variant_case
 from tgbot.middlewares.environment import EnvironmentMiddleware
 from tgbot.services.db import Database
 
@@ -39,7 +40,7 @@ def register_all_handlers(dp):
     register_live_situation_worker(dp)
     register_password_write_worker(dp)
     register_interaction_case(dp)
-    register_case_variant(dp)
+    register_variant_case(dp)
     register_after_the_case(dp)
 
 

@@ -4,6 +4,8 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
 from aiogram.utils.markdown import hlink
 
+from tgbot.handlers.message_variant import variant_text_twenty_four, variant_text_twenty_six, variant_text_twenty_five, \
+    variant_text_twenty_seven
 from tgbot.keyboards.inline_after_case import inline_after_case_one, inline_after_case_two, inline_after_case_three, \
     inline_after_case_four, inline_after_case_video
 from tgbot.services.db import Database
@@ -14,12 +16,27 @@ db = Database('database.db')
 
 async def after_case_one(call: CallbackQuery):
     await call.answer(cache_time=5)
+    await asyncio.sleep(2)
+    variant = db.get_variant(call.message.chat.id)[0][0]
+    await call.message.answer(variant_text_twenty_four[variant])
+    await asyncio.sleep(5)
+
+    await call.message.answer(variant_text_twenty_five[variant])
+    await asyncio.sleep(5)
+
+    await call.message.answer(variant_text_twenty_six[variant])
+    await asyncio.sleep(5)
+
+    await call.message.answer(variant_text_twenty_seven[variant])
+    await asyncio.sleep(5)
+
+
     await call.message.answer('Теперь поделись полученными знаниями с другими из команды ребятами\n\n'
                               'В этом поможет тебе организатор')
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
 
     await call.message.answer('После того, как задание будет выполнено, организатор вам скажет код')
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
 
     await call.message.answer('Введи код')
     await AfterCasePass.Password.set()
@@ -31,12 +48,12 @@ async def after_case_two(message: types.Message, state: FSMContext):
         await message.answer('Поздравляю!\n\n'
                              'Ты успешно прошел обучающее исследование '
                              '“В поисках углеродного следа” ')
-        await asyncio.sleep(1)
+        await asyncio.sleep(5)
 
         await message.answer('Теперь ты получаешь удостоверение '
                              '“будущего исследователя” и можешь '
                              'гордо нести данное звание', reply_markup=inline_after_case_one)
-        await asyncio.sleep(1)
+        await asyncio.sleep(5)
     else:
         await message.answer('Вы ввели неправильный пароль.\nПовторите снова')
 
@@ -47,12 +64,16 @@ async def after_case_three(call: CallbackQuery):
                               'Ты отличный член команды, мы на время стали учеными '
                               'и изучили очень интересную тему путем исследования!')
     # стикер Тимура
-    await asyncio.sleep(1)
+    await call.message.answer_sticker(sticker='CAACAgIAAxkBAAIKSWMf88q62Tq38G5ROUkDRDQipQXBAALZHwACPicBSXADhHQ3AuSOKQQ')
+    await asyncio.sleep(6)
+
 
     await call.message.answer('Я очень рада, что сегодня мы освоили тему углеродного '
                               'следа и изучили эко-привычки, которую '
                               'можно внести в собственную жизнь', reply_markup=inline_after_case_three)
     # стикер Яна
+    await call.message.answer_sticker(sticker='CAACAgIAAxkBAAIKT2Mf89BmctGgxDyZ-4kr4n9KxmfkAAIpKQACJ8IAAUlkK54XjzwGvikE')
+    await asyncio.sleep(6)
 
 
 async def after_case_four(call: CallbackQuery):
@@ -60,14 +81,17 @@ async def after_case_four(call: CallbackQuery):
     await call.message.answer('Очень здорово, что мы собрались такой '
                               'командой и организовали экологический проект. '
                               'Каждый смог унести для себя что-то полезное!')
-    # стикер Гуля
-    await asyncio.sleep(1)
+
+    await call.message.answer_sticker(
+        sticker='CAACAgIAAxkBAAIKS2Mf88xGkMUD0B0tJ25Mo7k5z-aJAAIJGwACgmMAAUkeOIwi7tLzgykE')
+    await asyncio.sleep(6)
     await call.message.answer('Я всегда мечтал создать, что-то полезное '
                               'для нашей планеты. И сегодня это у нас получилось! '
                               'Применив данные советы в жизнь, мы можем принести '
                               'пользу для Земли! Как же это здорово!')
-    # стикер Никита
-    await asyncio.sleep(1)
+    await call.message.answer_sticker(
+        sticker='CAACAgIAAxkBAAIKTWMf886YA250jvZ3xIDnpWTEg6cOAAIqIAACOUcBSbK3nTPwlyI5KQQ')
+    await asyncio.sleep(6)
     await call.message.answer('А что думаешь ты? какие остались у тебя '
                               'впечатления от обучающего исследования? '
                               '(напиши пару слов о мероприятии)')
@@ -78,6 +102,7 @@ async def after_case_five(message: types.Message, state: FSMContext):
     if len(message.text) <= 250:
         await state.finish()
         db.set_feedback(message.from_user.id, message.text)
+        await asyncio.sleep(2)
         await message.answer('Спасибо, что ты был сегодня с нами и прошел '
                              'обучающее исследование '
                              '“В поисках углеродного следа”', reply_markup=inline_after_case_two)
@@ -90,7 +115,7 @@ async def after_case_six(call: CallbackQuery):
     await call.answer(cache_time=5)
     db.set_status(call.message.chat.id, 1)
     await call.message.answer('Направляем тебе дальнейшую инструкцию!')
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
 
     await call.message.answer('Персональный чемоданчик остаётся у тебя. '
                               'Плакат, бандана, комикс и полезный подарок '
@@ -100,10 +125,11 @@ async def after_case_six(call: CallbackQuery):
 
 async def after_case_seven(call: CallbackQuery):
     await call.answer(cache_time=5)
+    await asyncio.sleep(3)
     await call.message.answer('Сейчас мы направим тебе перечень '
                               'полезных ссылок, с помощью которых '
                               'ты можешь узнать о многих интересных проектов')
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
     link_one = hlink('Обучающее-исследование', 'https://xn----7sbbbhlfabd2ae8a6adj1ca5a4fzb5g.xn--p1ai/')
     link_two = hlink('официальном сайте Благотворительного фонда “Татнефть', 'http://bf-tatneft.ru/fond/?1main')
     link_three = hlink('сайте Всероссийского образовательного проекта “Образ. будущего“', 'https://obrazbudu.ru/')
@@ -119,16 +145,16 @@ async def after_case_seven(call: CallbackQuery):
                               f'На {link_four} ты можешь смотреть расписание мастер-классов и научно-познавательных экскурсий',
                               disable_web_page_preview=True)
 
-    await asyncio.sleep(1)  # тут 2 часа - 7200 с
+    await asyncio.sleep(7200)  # тут 2 часа - 7200 с
 
     await call.message.answer('Еще раз привет! Мы высылаем тебе 10 '
                               'лабораторных работ, при прохождении которых '
                               'ты приобретешь полезные эко-привычки и узнаешь, '
                               'как сократить углеродный след')
-    await asyncio.sleep(1)
+    await asyncio.sleep(10)
 
     await call.message.answer_video(video='BAACAgIAAxkBAAIO0mMfpJeKPKWoJ4B49nDgm4mRbVEVAAI4HQACkDkBSYSu39vwehxdKQQ')
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
 
     await call.message.answer('Выбери из списка тему своего '
                               'исследования и посмотри по ней '
@@ -229,7 +255,7 @@ async def after_case_video(call: CallbackQuery):
 
 
 def register_after_the_case(dp: Dispatcher):
-    dp.register_callback_query_handler(after_case_one, text_contains='????', state=None)
+    dp.register_callback_query_handler(after_case_one, text_contains='inlineVarCaseSix', state=None)
     dp.register_message_handler(after_case_two, state=AfterCasePass.Password)
     dp.register_callback_query_handler(after_case_three, text_contains='AfterCaseOne', state=None)
     dp.register_callback_query_handler(after_case_four, text_contains='AfterCaseThree', state=None)

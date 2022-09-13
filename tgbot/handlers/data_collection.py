@@ -22,6 +22,7 @@ async def start_bot(call: CallbackQuery):
 
 async def acquaintance_fun(call: CallbackQuery):
     await call.answer(cache_time=5)
+    await asyncio.sleep(4)
     with open('nikita.png', 'rb') as photo:
         await call.message.answer_photo(photo,
                                         caption='Меня зовут Никита\n\nМеня увлекают изобретения и разные отрасли промышленности. '
@@ -31,6 +32,7 @@ async def acquaintance_fun(call: CallbackQuery):
 
 async def helloNikita(call: CallbackQuery):
     await call.answer(cache_time=5)
+    await asyncio.sleep(4)
     with open('gulya.png', 'rb') as photo:
         await call.message.answer_photo(photo, caption='Привет, Никита! Привет всем! Я Гуля\n\n'
                                                        'Я люблю придумывать всякие полезные проекты. '
@@ -43,6 +45,7 @@ async def helloNikita(call: CallbackQuery):
 
 async def helloGulya(call: CallbackQuery):
     await call.answer(cache_time=5)
+    await asyncio.sleep(4)
     with open('yana.png', 'rb') as photo:
         await call.message.answer_photo(photo, caption='Привет, я Яна\n\n'
                                                        'Я увлекаюсь экологией, знаю много эко-привычек. '
@@ -55,9 +58,10 @@ async def helloGulya(call: CallbackQuery):
 
 async def helloYana(call: CallbackQuery):
     await call.answer(cache_time=5)
+    await asyncio.sleep(4)
     await call.message.answer('У нас есть классная тема, команда из организатора, изобретателя '
                               'и эколога. Но нам кого-то еще не хватает')
-    await asyncio.sleep(1)
+    await asyncio.sleep(7)
 
     with open('timur.png', 'rb') as photo:
         await call.message.answer_photo(photo, caption='Привет, я Тимур\n\n'
@@ -72,9 +76,9 @@ async def helloYana(call: CallbackQuery):
 
 async def helloTimyr(call: CallbackQuery):
     await call.answer(cache_time=5)
+    await asyncio.sleep(5)
     await call.message.answer('Нас четверо, но в команде должно быть пятеро\n\n'
                               'Присоединишься к нашей команде?', reply_markup=description_add_hero)
-    await asyncio.sleep(1)
 
 
 async def addNewHero(call: CallbackQuery):
@@ -88,10 +92,10 @@ async def checkPassword(message: types.Message, state: FSMContext):
     if not bool(data.get('password')):
         if message.text == 'фотосинтез':
             await message.answer('Верно: ты прошел проверку!')
-            await asyncio.sleep(1)
+            await asyncio.sleep(5)
 
             await message.answer('Давай заполним анкету члена нашей команды✌🏻')
-            await asyncio.sleep(1)
+            await asyncio.sleep(5)
             await message.answer('Как тебя зовут? (напиши свое Имя)')
             await Data.next()
         else:

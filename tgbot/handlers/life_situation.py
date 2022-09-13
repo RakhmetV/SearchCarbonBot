@@ -12,17 +12,17 @@ async def live_situation_one(call: CallbackQuery):
         'Давай рассмотрим жизненные ситуации, на примере которых ты сможешь узнать, '
         'как можно будет снизить свой углеродный след\n\n'
         'Погнали!')
-    await asyncio.sleep(1)
+    await asyncio.sleep(6)
 
     await call.message.answer(
         'На примере жизни каждого школьникам можем рассмотреть '
         'несколько ситуаций и придумать то, как в них можно '
         'снизить углеродный след')
-    await asyncio.sleep(1)
+    await asyncio.sleep(6)
 
     await call.message.answer(
         'Вот какие жизненные ситуации сегодня мы разберем', reply_markup=inline_live_sit_one)
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
 
 
 async def live_situation_two(call: CallbackQuery):
@@ -32,7 +32,7 @@ async def live_situation_two(call: CallbackQuery):
         'используем флаконы для косметических средств.'
         ' Практически на каждом шагу '
         'можно снизить углеродный след', reply_markup=inline_live_sit_two)
-    await asyncio.sleep(1)
+    await asyncio.sleep(7)
 
 
 async def live_situation_three(call: CallbackQuery):
@@ -42,22 +42,17 @@ async def live_situation_three(call: CallbackQuery):
         'выбора способа передвижения до школы. Важно знать, что '
         'каждый вид транспорта оставляет углеродный след, будь то: '
         'автомобиль, троллейбус, автобус и т п.')
-    await asyncio.sleep(1)
+    await asyncio.sleep(8)
     await call.message.answer(
-        'Школьные уроки -', reply_markup=inline_live_sit_three)
-    await asyncio.sleep(1)
+        'Школьные уроки - мы ходим в школу, меняем одежду и обувь, пьем воду и используем много бумаги. И каждое наше действие в школе оставляет углеродный след. С помощью простых эко-привычек можно снизить углеродный след в школе!', reply_markup=inline_live_sit_three)
+    await asyncio.sleep(5)
 
 
 async def live_situation_four(call: CallbackQuery):
     await call.answer(cache_time=5)
     await call.message.answer(
-        'Экскурсия на предприятие - думаем, каждый из вас '
-        'немного знаком с промышленностью и вы знаете, '
-        'что она также влияет на окружающую среду. Каждое '
-        'предприятие с ответственностью подходит к этому вопросу.'
-        ' На различных площадках заводов выращиваются зеленые '
-        'гиганты - деревья, которые помогают снизить углеродный след')
-    await asyncio.sleep(1)
+        'Экскурсия на предприятие - думаем, каждый из вас немного знаком с промышленностью и вы знаете, что она также влияет на окружающую среду. Каждое предприятие с ответственностью подходит к этому вопросу и старается снижать углеродный след')
+    await asyncio.sleep(5)
 
     await call.message.answer(
         'Увлечения, хобби - у каждого из нас есть'
@@ -66,7 +61,7 @@ async def live_situation_four(call: CallbackQuery):
         'углеродный след!  Есть много способов проведения '
         'свободного времени не только с пользой для себя, но '
         'и природе!', reply_markup=inline_live_sit_four)
-    await asyncio.sleep(1)
+    await asyncio.sleep(10)
 
 
 async def live_situation_five(call: CallbackQuery):
@@ -76,33 +71,33 @@ async def live_situation_five(call: CallbackQuery):
         'различными вкусняшками, но это можно делать и с пользой '
         'для природы. Дело в том, что покупая продукты мы можем '
         'значительно снизить углеродный след !')
-    await asyncio.sleep(1)
+    await asyncio.sleep(7)
 
     await call.message.answer(
-        'Уборка по дому -', reply_markup=inline_live_sit_five)
-    await asyncio.sleep(1)
+        'Уборка по дому - при уборке помещения мы используем различную бытовую химию, расходуем воду и прочее. Практически на каждом шагу можно снизить углеродный след', reply_markup=inline_live_sit_five)
+    await asyncio.sleep(5)
 
 
 async def live_situation_six(call: CallbackQuery):
     await call.answer(cache_time=5)
     await call.message.answer(
-        'Покупка вещей -')
-    await asyncio.sleep(1)
+        'Покупка вещей - порой наши любимые вещи приходят в негодность ( где-то порвались, запачкались) , но не стоит забывать о том, что можно дать вторую жизнь своей любимой вещи. Так мы будем модными и экологичными! Снизим углеродный след!')
+    await asyncio.sleep(5)
 
     await call.message.answer(
-        'Здоровый сон -', reply_markup=inline_live_sit_six)
-    await asyncio.sleep(1)
+        'Здоровый сон - во время отдыха и сна есть много способов снизить углеродный след: отключение электроприборов от сетей, диджитал-детокс, использование энергосберегающих ночников', reply_markup=inline_live_sit_six)
+    await asyncio.sleep(5)
 
 
 async def live_situation_seven(call: CallbackQuery):
     await call.answer(cache_time=5)
     await call.message.answer(
-        'Поход, путешествие -')
-    await asyncio.sleep(1)
+        'Поход, путешествие - мы часто отдыхаем на природе, любим исследовать новые места и на каждом действии оставляем углеродный след. Есть много способов его снизить во время путешествия')
+    await asyncio.sleep(5)
 
     await call.message.answer(
         'И сегодня ты будешь разбирать одну из данных тем для исследования', reply_markup=inline_live_sit_seven)
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
 
 
 def register_live_situation_worker(dp: Dispatcher):

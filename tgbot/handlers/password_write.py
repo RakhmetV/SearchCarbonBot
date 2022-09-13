@@ -16,43 +16,41 @@ async def password_write_one(call: CallbackQuery):
     await call.answer(cache_time=5)
     await call.message.answer(
         'Чтобы получить тему жизненной ситуации введи пароль')
-    await asyncio.sleep(1)
+    await asyncio.sleep(4)
 
     await call.message.answer(
         'Попроси его у организатора')
-    await asyncio.sleep(1)
+    await asyncio.sleep(6)
 
     await call.message.answer(
         'Получил?', reply_markup=inline_case_pass_one)
-    await asyncio.sleep(1)
 
 
 async def password_write_two(call: CallbackQuery):
     await call.answer(cache_time=5)
+    await asyncio.sleep(2)
     await call.message.answer('Ты получил название химического вещества⚛️')
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
 
     await call.message.answer('Теперь найди формулу данного вещества, '
                                   'покажи модератору данную формулу и сверься')
-    await asyncio.sleep(1)
+    await asyncio.sleep(6)
 
     await call.message.answer('Нашел формулу данного вещества?', reply_markup=inline_case_pass_two)
-    await asyncio.sleep(1)
 
 
 async def password_write_three(call: CallbackQuery):
     await call.answer(cache_time=5)
+    await asyncio.sleep(2)
     await call.message.answer('Данная формула вещества будет являться паролем')
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
     await call.message.answer('Введи пароль (Заглавными буквами и английским шрифтом)')
     await DataPass.CasePassword.set()
 
 
 async def password_write_four(message: types.Message, state: FSMContext):
     data = await state.get_data()  # тут хранится весь словарь состояний
-    print(1)
     if not bool(data.get('password_case')):
-        print(2)
         answer = message.text
         if answer in team_selection:
             db = Database('database.db')
@@ -79,7 +77,7 @@ async def password_write_four(message: types.Message, state: FSMContext):
                     await state.update_data(password_case=answer)
                     db.set_variant(message.from_user.id, variant)
                     await message.answer(f'Ты ввел правильную формулу вещества!')
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(5)
                     await message.answer(f'Сейчас ты получишь случайным образом '
                                          f'одну из десяти жизненных ситуаций, на примере '
                                          f'которой будешь рассчитывать способы снижения '
@@ -92,26 +90,27 @@ async def password_write_four(message: types.Message, state: FSMContext):
 async def password_write_five(call: CallbackQuery):
     await call.answer(cache_time=5)
     db = Database('database.db')
+    await asyncio.sleep(2)
     await call.message.answer('Несколько мгновений и ты получишь заветную тему')
-    await asyncio.sleep(1)
+    await asyncio.sleep(3)
 
-    await call.message.answer_sticker(sticker='CAACAgIAAxkBAAIJ-mMd94_BTkMZCs6Gf61vffaK-ly0AAJNAAOtZbwU9rZs9GUx5hopBA')
-    await asyncio.sleep(1)
+    # await call.message.answer_sticker(sticker='CAACAgIAAxkBAAIJ-mMd94_BTkMZCs6Gf61vffaK-ly0AAJNAAOtZbwU9rZs9GUx5hopBA')
+    # await asyncio.sleep(1)
 
     await call.message.answer('Еще секундочку!')
-    await asyncio.sleep(1)
+    await asyncio.sleep(2)
 
     variant = db.get_variant(call.message.chat.id)[0][0]
     await call.message.answer(f'И наконец! Ты получаешь исследование по теме <b>{team_name[variant]}</b>',
                               parse_mode='HTML')
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
 
     await call.message.answer('Покажи тему жизненной ситуации организатору '
                               'и он выдаст тебе персональный чемоданчик для исследования')
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
 
     await call.message.answer('Получил чемоданчик?', reply_markup=inline_interaction_one)
-    await asyncio.sleep(1)
+    await asyncio.sleep(5)
 
 
 def register_password_write_worker(dp: Dispatcher):

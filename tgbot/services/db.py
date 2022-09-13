@@ -102,7 +102,6 @@ class Database:
             return self.cursor.execute("UPDATE `users` SET `studying_topic_four` = ? WHERE `user_id` = ?",
                                        (studying_topic_four, user_id,))
 
-
     # добавить ответ на вопрос 1
     def set_answer_one(self, user_id, answer_one):
         with self.connection:
@@ -145,4 +144,4 @@ class Database:
     def get_user_all(self):
         with self.connection:
             return self.cursor.execute(
-                "SELECT `name`, `college`, `date`, `variant`, `answer_one`, `answer_two`, `feedback` FROM `users`").fetchall()
+                "SELECT  `date`, `name`,`district` ,`college`, `hobby`, `favorite_subject`, `interest_ecology`, `studying_topic_one`, `studying_topic_two`, `studying_topic_three`, `studying_topic_four`, `variant`, `answer_one`, `answer_two`, `feedback` FROM `users`").fetchall()
