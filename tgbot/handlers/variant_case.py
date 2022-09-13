@@ -110,7 +110,7 @@ async def variant_question_one(message: types.Message, state: FSMContext):
                     await message.answer(variant_text_twelve[variant_case])
                     await asyncio.sleep(5)
                     await message.answer(variant_text_thirteen[variant_case],
-                                         reply_markup=inline_variant_case_three[variant_case])
+                                         reply_markup=inline_variant_case_three)
 
 
 
