@@ -11,22 +11,25 @@ from tgbot.keyboards.inline import acquaintance_bot, description_Nikita, descrip
 from tgbot.keyboards.inline_college import district_rt, college_inline_keyboard
 from tgbot.services.db import Database
 from tgbot.states.test import Data
-db = Database('database.db')
 
+db = Database('database.db')
 
 
 async def start_bot(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await call.message.answer('Для начала познакомимся с командой', reply_markup=acquaintance_bot)
+    await call.message.answer('Для начала познакомимся с командой☺', reply_markup=acquaintance_bot)
 
 
 async def acquaintance_fun(call: CallbackQuery):
     await call.answer(cache_time=5)
     await call.message.answer_sticker(
         sticker='CAACAgIAAxkBAAIKTWMf886YA250jvZ3xIDnpWTEg6cOAAIqIAACOUcBSbK3nTPwlyI5KQQ')
-    await call.message.answer('Меня зовут Никита\n\nМеня увлекают изобретения и разные отрасли промышленности. '
-                                                'Когда-нибудь я создам что-то полезное для всей планеты! Только вот что именно создать? И кого позвать в команду? Ладно, разберёмся вместе!',
-                                        reply_markup=description_Nikita)
+    await call.message.answer('Меня зовут Никита\n\n'
+                              'Меня увлекают изобретения и разные отрасли промышленности🏭\n'
+                              'Когда-нибудь я создам что-то полезное для всей планеты!\n\n'
+                              'Только вот что именно создать? И кого позвать в команду?\n\n'
+                              'Ладно, разберёмся вместе🖐!',
+                              reply_markup=description_Nikita)
 
 
 async def helloNikita(call: CallbackQuery):
@@ -34,13 +37,13 @@ async def helloNikita(call: CallbackQuery):
     await call.message.answer_sticker(
         sticker='CAACAgIAAxkBAAIKS2Mf88xGkMUD0B0tJ25Mo7k5z-aJAAIJGwACgmMAAUkeOIwi7tLzgykE')
 
-    await call.message.answer('Привет, Никита! Привет всем! Я Гуля\n\n'
-                                                       'Я люблю придумывать всякие полезные проекты. '
-                                                       'Никите нужна была помощь с тем, чтобы создать что-то новое,'
-                                                       ' и я решила ему помочь. Никита любит изобретать, а я —'
-                                                       ' организовать. Но мы не могли придумать тему для нашего '
-                                                       'нового проекта.',
-                                        reply_markup=description_Gulya)
+    await call.message.answer('Привет, Никита! Привет всем! Я Гуля 😊\n\n'
+                              'Я люблю придумывать всякие полезные проекты. '
+                              'Никите нужна была помощь с тем, чтобы создать что-то новое, '
+                              'и я решила ему помочь. Никита любит изобретать, '
+                              'а я — организовать.\n\n'
+                              'Но мы не могли придумать тему для нашего нового проекта🤔',
+                              reply_markup=description_Gulya)
 
 
 async def helloGulya(call: CallbackQuery):
@@ -48,29 +51,32 @@ async def helloGulya(call: CallbackQuery):
     await call.message.answer_sticker(
         sticker='CAACAgIAAxkBAAIKT2Mf89BmctGgxDyZ-4kr4n9KxmfkAAIpKQACJ8IAAUlkK54XjzwGvikE')
 
-    await call.message.answer('Привет, я Яна\n\n'
-                                                       'Я увлекаюсь экологией, знаю много эко-привычек. '
-                                                       'Вот недавно мы встретились с Гулей и Никитой в парке. '
-                                                       'Им нужна была тема для нового проекта. Я им предложила '
-                                                       'создать проект по экологии, ведь это то, в чем я отлично '
-                                                       'разбираюсь!',
-                                        reply_markup=description_Yana)
+    await call.message.answer('Привет, я Яна✌🏻\n\n'
+                              'Я увлекаюсь экологией, знаю много эко-привычек.🌿\n\n'
+                              'Вот недавно мы встретились с Гулей и Никитой в парке. '
+                              'Им нужна была тема для нового проекта.\n\n'
+                              'Я им предложила создать проект '
+                              'по экологии, ведь это то, в чем я отлично '
+                              'разбираюсь!',
+                              reply_markup=description_Yana)
 
 
 async def helloYana(call: CallbackQuery):
     await call.answer(cache_time=5)
     await call.message.answer('У нас есть классная тема, команда из организатора, изобретателя '
-                              'и эколога. Но нам кого-то еще не хватает')
+                              'и эколога. Но нам кого-то еще не хватает🤔')
     await asyncio.sleep(3)
     await call.message.answer_sticker(sticker='CAACAgIAAxkBAAIKSWMf88q62Tq38G5ROUkDRDQipQXBAALZHwACPicBSXADhHQ3AuSOKQQ')
-    await call.message.answer('Привет, я Тимур\n\n'
-                                                       'Я увлекаюсь наукой, в будущем я точно стану ученым.'
-                                                       ' Кстати, лучший способ узнать что-то новое или создать '
-                                                       'свой проект — это исследование. Яна пригласила меня в '
-                                                       'команду, и я им предложил сделать формат проекта '
-                                                       'исследовательским. То есть, мы сами будем получать '
-                                                       'новые знания!',
-                                        reply_markup=description_Timyr)
+    await call.message.answer('Привет, я Тимур👋🏻\n\n'
+                              'Я увлекаюсь наукой, в будущем я точно стану ученым.'
+                              ' Кстати, лучший способ узнать что-то новое или создать '
+                              'свой проект — это исследование🔍\n\n'
+                              'Яна пригласила меня в '
+                              'команду, и я им предложил сделать формат проекта '
+                              'исследовательским. То есть, мы сами будем получать '
+                              'новые знания!⚡️',
+                              reply_markup=description_Timyr)
+
 
 async def helloTimyr(call: CallbackQuery):
     await call.answer(cache_time=5)
@@ -80,7 +86,8 @@ async def helloTimyr(call: CallbackQuery):
 
 async def addNewHero(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await call.message.answer('У нашего исследования есть свой секретный код. Спроси его у организатора')
+    await call.message.answer('У нашего исследования есть свой секретный код.🔐\n\n'
+                              'Спроси его у организатора')
     await Data.Password.set()
 
 
@@ -119,7 +126,7 @@ async def answer_name(message: types.Message, state: FSMContext):
 async def answer_district(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
     db.set_district(call.message.chat.id, district_name[call.data.split(':')[1]])
-    await call.message.answer('Выбери свое учебное заведение',
+    await call.message.answer('Выбери свое учебное заведение🏫',
                               reply_markup=college_inline_keyboard[call.data.split(':')[1]])
     await Data.next()
 
@@ -127,7 +134,7 @@ async def answer_district(call: CallbackQuery, state: FSMContext):
 async def answer_college(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
     db.set_college(call.message.chat.id, call.data.split(':')[1])
-    await call.message.answer('Напиши несколько своих увлечений в одном предложении')
+    await call.message.answer('Напиши несколько своих увлечений в одном предложении🎨🏀')
     await Data.next()
 
 
@@ -135,7 +142,7 @@ async def answer_hobbies(message: types.Message, state: FSMContext):
     # добавить увлечения в базу данных
     if len(message.text) <= 150:
         db.set_hobby(message.from_user.id, message.text)
-        await message.answer('Какой предмет в школе ты больше всего любишь?')
+        await message.answer('Какой предмет в школе ты больше всего любишь?📚')
         await Data.next()
     else:
         await message.answer(f'Количество символов не должно превышать 150\n'
@@ -146,11 +153,10 @@ async def answer_favorite_sub(message: types.Message, state: FSMContext):
     if len(message.text) <= 50:
         db.set_favorite_subject(message.from_user.id, message.text)
         await Data.next()
-        await message.answer('Интересуешься ли ты экологией?', reply_markup=description_eco)
+        await message.answer('Интересуешься ли ты экологией🌳?', reply_markup=description_eco)
     else:
         await message.answer(f'Количество символов не должно превышать 150\n'
                              f'Количество ваших символов: {len(message.text)}')
-
 
 
 async def data_coll_one(call: CallbackQuery, state: FSMContext):
@@ -158,9 +164,8 @@ async def data_coll_one(call: CallbackQuery, state: FSMContext):
     db.set_interest_ecology(call.message.chat.id, call.data.split(':')[1])
     await state.finish()
 
-    await call.message.answer('Слышал ли ты когда нибудь об углеродном следе?',
+    await call.message.answer('Слышал ли ты когда нибудь об углеродном следе?👣',
                               reply_markup=carbon_footprint)
-
 
 
 def register_data_collection(dp: Dispatcher):
@@ -179,8 +184,6 @@ def register_data_collection(dp: Dispatcher):
     dp.register_message_handler(answer_hobbies, state=Data.Hobbies)
     dp.register_message_handler(answer_favorite_sub, state=Data.Favorite_subject)
     dp.register_callback_query_handler(data_coll_one, text_contains='ecoSearch', state=Data.Eco)
-
-
 
     # dp.register_message_handler(answer_education, state=Data.EducationalInstitution)
     # dp.register_callback_query_handler(inlinePasswordOne, text_contains='inlinePassOne',

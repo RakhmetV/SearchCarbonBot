@@ -28,6 +28,8 @@ district_rt = InlineKeyboardMarkup(
     row_width=1
 )
 
+
+
 college_inline_keyboard = {
     'Bavlinsk': InlineKeyboardMarkup(
         inline_keyboard=[
@@ -83,20 +85,25 @@ college_inline_keyboard = {
     'Lenigorod': InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text='СОШ №8', callback_data='college:СОШ №8')
-
+                InlineKeyboardButton(text='СОШ №2', callback_data='college:СОШ №2')
+            ],
+            [
+                InlineKeyboardButton(text='СОШ №4', callback_data='college:СОШ №4')
             ],
             [
                 InlineKeyboardButton(text='СОШ №6', callback_data='college:СОШ №6')
             ],
             [
+                InlineKeyboardButton(text='СОШ №7»', callback_data='college:СОШ №7')
+            ],
+            [
+                InlineKeyboardButton(text='СОШ №8', callback_data='college:СОШ №8')
+            ],
+            [
                 InlineKeyboardButton(text='СОШ №10', callback_data='college:СОШ №10')
             ],
             [
-                InlineKeyboardButton(text='СОШ №2', callback_data='college:СОШ №2')
-            ],
-            [
-                InlineKeyboardButton(text='Гимназия №11»', callback_data='college:Гимназия №11')
+                InlineKeyboardButton(text='СОШ №11»', callback_data='college:СОШ №11')
             ],
             [
                 InlineKeyboardButton(text='Лицей №12', callback_data='college:Лицей №12')
@@ -257,3 +264,4 @@ college_inline_keyboard = {
         row_width=1
     )
 }
+

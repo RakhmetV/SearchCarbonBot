@@ -11,7 +11,7 @@ from tgbot.services.db import Database
 db = Database('database.db')
 async def send_video(message: Message):
     print(1)
-    await message.answer_video(video='BAACAgIAAxkBAAIO0mMfpJeKPKWoJ4B49nDgm4mRbVEVAAI4HQACkDkBSYSu39vwehxdKQQ')
+    await message.answer_video(video='BAACAgIAAxkBAAJS9GMh1Uzs_b45tPyyZC8Zq-KEv2TPAAKfHAACEHURSchjJ3fKot6MKQQ')
     print(2)
 
 
@@ -155,12 +155,12 @@ async def admin_menu(message: Message):
 
 
 async def video_id(message: Message):
-    await message.reply(message.photo[-1].file_id)
+    await message.reply(message.video.file_id)
 
 
 def register_admin(dp: Dispatcher):
     dp.register_message_handler(admin_start, commands=["start"], state="*", is_admin=True)
-    dp.register_message_handler(send_video, commands=["photo"], state="*", is_admin=True)
+    dp.register_message_handler(send_video, commands=["video"], state="*", is_admin=True)
     dp.register_message_handler(drop, commands=["drop_all"], state="*", is_admin=True)
     dp.register_message_handler(admin_menu, state=None, is_admin=True)
-    dp.register_message_handler(video_id, content_types=ContentTypes.PHOTO, is_admin=True)
+    dp.register_message_handler(video_id, content_types=ContentTypes.VIDEO, is_admin=True)

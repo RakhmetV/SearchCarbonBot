@@ -16,12 +16,13 @@ async def password_write_one(call: CallbackQuery):
     await call.answer(cache_time=5)
     db = Database('database.db')
     db.set_studying_topic_one(call.message.chat.id, call.data.split(':')[1])
-    await call.message.answer('Отлично, ты в нашей команде!')
+    await call.message.answer('Спасибо, мы получили твою анкету. Теперь ты в нашей команде✋')
     await asyncio.sleep(1)
 
     await call.message.answer(
-        'Для того чтобы начать исследование необходимо ввести код')
+        'Для того чтобы начать исследование необходимо ввести код📝')
     await asyncio.sleep(1)
+
 
     await call.message.answer(
         'Узнай код у организатора')
@@ -45,7 +46,7 @@ async def password_write_two(call: CallbackQuery):
 
 async def password_write_three(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await call.message.answer('Данная формула вещества будет являться паролем')
+    await call.message.answer('Данная формула вещества будет являться паролем❗')
     await asyncio.sleep(3)
     await call.message.answer('Введи пароль (Заглавными буквами и английским шрифтом)')
     await DataPass.CasePassword.set()
@@ -82,7 +83,7 @@ async def password_write_four(message: types.Message, state: FSMContext):
                     await message.answer(f'Ты ввел правильную формулу вещества!')
                     await asyncio.sleep(3)
                     await message.answer(f'Сейчас ты получишь случайным образом '
-                                         f'одну из десяти жизненных ситуаций, на примере '
+                                         f'одну из десяти жизненных ситуаций🌟, на примере '
                                          f'которой будешь рассчитывать способы снижения '
                                          f'углеродного следа', reply_markup=inline_case_pass_three)
                     await state.finish()
@@ -105,7 +106,7 @@ async def password_write_five(call: CallbackQuery):
     await asyncio.sleep(5)
 
     await call.message.answer('Покажи тему жизненной ситуации организатору '
-                              'и он выдаст тебе персональный чемоданчик для исследования')
+                              'и он выдаст тебе персональный чемоданчик для исследования🧳')
     await asyncio.sleep(5)
 
     await call.message.answer('Получил чемоданчик?', reply_markup=inline_interaction_one)
