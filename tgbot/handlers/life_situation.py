@@ -52,7 +52,7 @@ async def live_situation_four(call: CallbackQuery):
     await call.answer(cache_time=5)
     await call.message.answer(
         'Экскурсия на предприятие - думаем, каждый из вас немного знаком с промышленностью и вы знаете, что она также влияет на окружающую среду. Каждое предприятие с ответственностью подходит к этому вопросу и старается снижать углеродный след')
-    await asyncio.sleep(5)
+    await asyncio.sleep(8)
 
     await call.message.answer(
         'Увлечения, хобби - у каждого из нас есть'
@@ -71,7 +71,7 @@ async def live_situation_five(call: CallbackQuery):
         'различными вкусняшками, но это можно делать и с пользой '
         'для природы. Дело в том, что покупая продукты мы можем '
         'значительно снизить углеродный след !')
-    await asyncio.sleep(7)
+    await asyncio.sleep(8)
 
     await call.message.answer(
         'Уборка по дому - при уборке помещения мы используем различную бытовую химию, расходуем воду и прочее. Практически на каждом шагу можно снизить углеродный след', reply_markup=inline_live_sit_five)
@@ -96,7 +96,7 @@ async def live_situation_seven(call: CallbackQuery):
     await asyncio.sleep(5)
 
     await call.message.answer(
-        'И сегодня ты будешь разбирать одну из данных тем для исследования', reply_markup=inline_live_sit_seven)
+        'И в сегодняшнем исследовании ты будешь разбирать свою тему', reply_markup=inline_live_sit_seven)
     await asyncio.sleep(5)
 
 

@@ -16,7 +16,6 @@ db = Database('database.db')
 
 async def after_case_one(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await asyncio.sleep(2)
     variant = db.get_variant(call.message.chat.id)[0][0]
     await call.message.answer(variant_text_twenty_four[variant])
     await asyncio.sleep(5)
@@ -25,7 +24,7 @@ async def after_case_one(call: CallbackQuery):
     await asyncio.sleep(5)
 
     await call.message.answer(variant_text_twenty_six[variant])
-    await asyncio.sleep(5)
+    await asyncio.sleep(8)
 
     await call.message.answer(variant_text_twenty_seven[variant])
     await asyncio.sleep(5)
@@ -48,7 +47,7 @@ async def after_case_two(message: types.Message, state: FSMContext):
         await message.answer('Поздравляю!\n\n'
                              'Ты успешно прошел обучающее исследование '
                              '“В поисках углеродного следа” ')
-        await asyncio.sleep(5)
+        await asyncio.sleep(3)
 
         await message.answer('Теперь ты получаешь удостоверение '
                              '“будущего исследователя” и можешь '
@@ -60,41 +59,44 @@ async def after_case_two(message: types.Message, state: FSMContext):
 
 async def after_case_three(call: CallbackQuery):
     await call.answer(cache_time=5)
+    # стикер Тимура
+    await call.message.answer_sticker(sticker='CAACAgIAAxkBAAIKSWMf88q62Tq38G5ROUkDRDQipQXBAALZHwACPicBSXADhHQ3AuSOKQQ')
     await call.message.answer('Нам было очень приятно проводить проект с тобой!\n\n'
                               'Ты отличный член команды, мы на время стали учеными '
                               'и изучили очень интересную тему путем исследования!')
-    # стикер Тимура
-    await call.message.answer_sticker(sticker='CAACAgIAAxkBAAIKSWMf88q62Tq38G5ROUkDRDQipQXBAALZHwACPicBSXADhHQ3AuSOKQQ')
     await asyncio.sleep(6)
 
-
+    # стикер Яна
+    await call.message.answer_sticker(
+        sticker='CAACAgIAAxkBAAIKT2Mf89BmctGgxDyZ-4kr4n9KxmfkAAIpKQACJ8IAAUlkK54XjzwGvikE')
     await call.message.answer('Я очень рада, что сегодня мы освоили тему углеродного '
                               'следа и изучили эко-привычки, которую '
                               'можно внести в собственную жизнь', reply_markup=inline_after_case_three)
-    # стикер Яна
-    await call.message.answer_sticker(sticker='CAACAgIAAxkBAAIKT2Mf89BmctGgxDyZ-4kr4n9KxmfkAAIpKQACJ8IAAUlkK54XjzwGvikE')
-    await asyncio.sleep(6)
 
 
 async def after_case_four(call: CallbackQuery):
     await call.answer(cache_time=5)
+    await call.message.answer_sticker(
+        sticker='CAACAgIAAxkBAAIKS2Mf88xGkMUD0B0tJ25Mo7k5z-aJAAIJGwACgmMAAUkeOIwi7tLzgykE')
     await call.message.answer('Очень здорово, что мы собрались такой '
                               'командой и организовали экологический проект. '
                               'Каждый смог унести для себя что-то полезное!')
 
+    await asyncio.sleep(5)
+
     await call.message.answer_sticker(
-        sticker='CAACAgIAAxkBAAIKS2Mf88xGkMUD0B0tJ25Mo7k5z-aJAAIJGwACgmMAAUkeOIwi7tLzgykE')
-    await asyncio.sleep(6)
+        sticker='CAACAgIAAxkBAAIKTWMf886YA250jvZ3xIDnpWTEg6cOAAIqIAACOUcBSbK3nTPwlyI5KQQ')
+
     await call.message.answer('Я всегда мечтал создать, что-то полезное '
                               'для нашей планеты. И сегодня это у нас получилось! '
                               'Применив данные советы в жизнь, мы можем принести '
                               'пользу для Земли! Как же это здорово!')
-    await call.message.answer_sticker(
-        sticker='CAACAgIAAxkBAAIKTWMf886YA250jvZ3xIDnpWTEg6cOAAIqIAACOUcBSbK3nTPwlyI5KQQ')
     await asyncio.sleep(6)
-    await call.message.answer('А что думаешь ты? какие остались у тебя '
-                              'впечатления от обучающего исследования? '
-                              '(напиши пару слов о мероприятии)')
+
+    await call.message.answer(f'А что думаешь ты? какие остались у тебя '
+                              f'впечатления от обучающего исследования?\n\n'
+                              f'<i>(Напиши пару слов о мероприятии)</i>',
+                              parse_mode='HTML')
     await AfterCasePass.FeedBack.set()
 
 
@@ -102,7 +104,6 @@ async def after_case_five(message: types.Message, state: FSMContext):
     if len(message.text) <= 250:
         await state.finish()
         db.set_feedback(message.from_user.id, message.text)
-        await asyncio.sleep(2)
         await message.answer('Спасибо, что ты был сегодня с нами и прошел '
                              'обучающее исследование '
                              '“В поисках углеродного следа”', reply_markup=inline_after_case_two)
@@ -115,7 +116,7 @@ async def after_case_six(call: CallbackQuery):
     await call.answer(cache_time=5)
     db.set_status(call.message.chat.id, 1)
     await call.message.answer('Направляем тебе дальнейшую инструкцию!')
-    await asyncio.sleep(5)
+    await asyncio.sleep(2)
 
     await call.message.answer('Персональный чемоданчик остаётся у тебя. '
                               'Плакат, бандана, комикс и полезный подарок '
@@ -125,7 +126,6 @@ async def after_case_six(call: CallbackQuery):
 
 async def after_case_seven(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await asyncio.sleep(3)
     await call.message.answer('Сейчас мы направим тебе перечень '
                               'полезных ссылок, с помощью которых '
                               'ты можешь узнать о многих интересных проектов')
@@ -144,14 +144,16 @@ async def after_case_seven(call: CallbackQuery):
                               f'На {link_three} ты можешь следить за деятельностью проекта\n\n'
                               f'На {link_four} ты можешь смотреть расписание мастер-классов и научно-познавательных экскурсий',
                               disable_web_page_preview=True)
+    await asyncio.sleep(5)
+    await call.message.answer('Через несколько часов тебе придут видеоролики с лабораторными работами.')
 
-    await asyncio.sleep(7200)  # тут 2 часа - 7200 с
+    await asyncio.sleep(1)  # тут 2 часа - 7200 с
 
     await call.message.answer('Еще раз привет! Мы высылаем тебе 10 '
                               'лабораторных работ, при прохождении которых '
                               'ты приобретешь полезные эко-привычки и узнаешь, '
                               'как сократить углеродный след')
-    await asyncio.sleep(10)
+    await asyncio.sleep(5)
 
     await call.message.answer_video(video='BAACAgIAAxkBAAIO0mMfpJeKPKWoJ4B49nDgm4mRbVEVAAI4HQACkDkBSYSu39vwehxdKQQ')
     await asyncio.sleep(5)

@@ -36,9 +36,9 @@ def register_all_handlers(dp):
     register_user(dp)
 
     register_data_collection(dp)
+    register_password_write_worker(dp)
     register_case_worker(dp)
     register_live_situation_worker(dp)
-    register_password_write_worker(dp)
     register_interaction_case(dp)
     register_variant_case(dp)
     register_after_the_case(dp)

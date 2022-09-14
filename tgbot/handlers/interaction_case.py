@@ -10,23 +10,21 @@ from tgbot.keyboards.inline import inline_interaction_two, inline_interaction_th
 from tgbot.states.test import InterPass
 
 
-async def interact_case_one(call: CallbackQuery):
-    await call.answer(cache_time=5)
-
-    await call.message.answer('Как тебе набор?', reply_markup=inline_interaction_two)
+# async def interact_case_one(call: CallbackQuery):
+#     await call.answer(cache_time=5)
+#
+#     await call.message.answer('Как тебе набор?', reply_markup=inline_interaction_two)
 
 
 
 async def interact_case_two(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await asyncio.sleep(2)
-    await call.message.answer('Я очень рад, что тебе понравился чемоданчик. Давай его распаковывать',
+    await call.message.answer('Для начала откроем чемоданчик',
                               reply_markup=inline_interaction_three)
 
 
 async def interact_case_three(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await asyncio.sleep(3)
     await call.message.answer('Внутри чемоданчика лежат все необходимое, которое поможет '
                               'тебе провести исследование: письмо-приветствие, '
                               'секретный конверт, бандана и полезный подарок')
@@ -41,14 +39,12 @@ async def interact_case_three(call: CallbackQuery):
 
 async def interact_case_four(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await asyncio.sleep(3)
     await call.message.answer('Теперь прочитай еще раз и найди все цифры в тексте',
                               reply_markup=inline_interaction_five)
 
 
 async def interact_case_five(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await asyncio.sleep(2)
     await call.message.answer('Расположи их в виде возрастания. Это будет являться паролем.')
     await asyncio.sleep(5)
 
@@ -61,7 +57,7 @@ async def interact_case_six(message: types.Message, state: FSMContext):
     if not bool(data.get('password_interact')):
         if message.text == '012567':
             await state.update_data(password_interact=message.text)
-            await asyncio.sleep(5)
+            await asyncio.sleep(1)
 
             await message.answer('Супер, теперь переходим к следующему реквизиту для исследования, к бандане!')
             await asyncio.sleep(5)
@@ -74,7 +70,6 @@ async def interact_case_six(message: types.Message, state: FSMContext):
 
 async def interact_case_seven(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
-    await asyncio.sleep(2)
     await call.message.answer('В этой бандане нарисованы символы всех жизненных '
                               'ситуаций, которых будем исследовать')
     await asyncio.sleep(5)
@@ -85,29 +80,25 @@ async def interact_case_seven(call: CallbackQuery, state: FSMContext):
 
 async def interact_case_eight(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
-    await asyncio.sleep(2)
     await call.message.answer('Внутри чемодана есть конверт. Его нужно открыть', reply_markup=inline_interaction_eight)
 
 
 async def interact_case_nine(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
     await state.finish()
-    await asyncio.sleep(2)
     await call.message.answer('Как ты видишь, внутри него лежит комикс и плакат\n\n'
                               'Ты можешь повесить плакат на стену, а комикс нам '
                               'понадобится при проведении исследования')
-    await asyncio.sleep(7)
+    await asyncio.sleep(5)
 
     await call.message.answer('Кроме всего этого есть полезные подарки, но о них мы расскажем чуть позже')
     await asyncio.sleep(5)
 
     await call.message.answer('Ну что, перейдем к исследованию?', reply_markup=inline_interaction_nine)
-    await asyncio.sleep(5)
 
 
 def register_interaction_case(dp: Dispatcher):
-    dp.register_callback_query_handler(interact_case_one, text_contains='inlineInteractOne', state=None)
-    dp.register_callback_query_handler(interact_case_two, text_contains='inlineInteractTwo', state=None)
+    dp.register_callback_query_handler(interact_case_two, text_contains='liveSitSeven', state=None)
     dp.register_callback_query_handler(interact_case_three, text_contains='inlineInteractThree', state=None)
     dp.register_callback_query_handler(interact_case_four, text_contains='inlineInteractFour', state=None)
     dp.register_callback_query_handler(interact_case_five, text_contains='inlineInteractFive', state=None)

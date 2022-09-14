@@ -57,7 +57,7 @@ inline_live_sit_six = InlineKeyboardMarkup(
 inline_live_sit_seven = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Хочу тему', callback_data='liveSitSeven')
+            InlineKeyboardButton(text='Давай исследовать😋', callback_data='liveSitSeven')
         ]
     ],
     row_width=1

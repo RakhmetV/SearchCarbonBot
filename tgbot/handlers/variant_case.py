@@ -21,7 +21,6 @@ db = Database('database.db')
 
 async def variant_case_one(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
-    await DataCase.Variant.set()
 
     list_var = db.get_variant(call.message.chat.id)
     if bool(len(list_var)):
@@ -36,8 +35,8 @@ async def variant_case_one(call: CallbackQuery, state: FSMContext):
     await call.message.answer(variant_text_two[variant_case])
     await asyncio.sleep(6)
 
+    await DataCase.Variant.set()
     await call.message.answer(variant_text_three[variant_case], reply_markup=inline_variant_case_one)
-    await asyncio.sleep(5)
 
 
 async def variant_case_two(call: CallbackQuery, state: FSMContext):
@@ -52,7 +51,6 @@ async def variant_case_three(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
     data = await state.get_data()  # тут хранится весь словарь состояний
     variant_case = data.get('variant')
-    await asyncio.sleep(2)
     await call.message.answer(variant_text_five[variant_case])
     await asyncio.sleep(5)
 
@@ -66,7 +64,6 @@ async def variant_case_three(call: CallbackQuery, state: FSMContext):
     await asyncio.sleep(8)
 
     await call.message.answer(variant_text_nine[variant_case])
-    await asyncio.sleep(5)
     await DataCase.next()
 
 
@@ -87,7 +84,6 @@ async def variant_question_one(message: types.Message, state: FSMContext):
                     6: calculation_one(variant_case, int(message.text), 1),
                     8: calculation_one(variant_case, int(message.text), 1)
                 }
-                await asyncio.sleep(2)
                 # 2 4 5 6 8
                 if variant_case in formula_first_answer:
                     await DataCase.next()
@@ -209,25 +205,24 @@ async def variant_case_four(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
     data = await state.get_data()  # тут хранится весь словарь состояний
     variant_case = data.get('variant')
-    await asyncio.sleep(2)
     await call.message.answer(variant_text_fourteen[variant_case])
-    await asyncio.sleep(6)
+    await asyncio.sleep(4)
 
     await call.message.answer(variant_text_fifteen[variant_case])
     await asyncio.sleep(7)
 
     await call.message.answer(variant_text_sixteen[variant_case])
-    await asyncio.sleep(5)
+    await asyncio.sleep(7)
 
     await call.message.answer(variant_text_seventeen[variant_case])
-    await asyncio.sleep(7)
+    await asyncio.sleep(8)
 
     await call.message.answer(variant_text_nineteen[variant_case])
     await DataCase.next()
 
 
 async def carbon_question_three(message: types.Message, state: FSMContext):
-    await asyncio.sleep(2)
+    await asyncio.sleep(1)
     # 0 1 2 3 4 5 6 7 8 9
 
     data = await state.get_data()  # тут хранится весь словарь состояний
@@ -263,7 +258,6 @@ async def carbon_question_three(message: types.Message, state: FSMContext):
 
                 else:
                     # 0 4 5 6 7 8 9
-                    await asyncio.sleep(2)
                     await message.answer(variant_text_twenty[variant_case])
 
                 await DataCase.next()
@@ -274,7 +268,6 @@ async def carbon_question_three(message: types.Message, state: FSMContext):
 
 
 async def carbon_question_four(message: types.Message, state: FSMContext):
-    await asyncio.sleep(1)
     data = await state.get_data()  # тут хранится весь словарь состояний
     if not bool(data.get('four')):
         if message.text.isdigit():
@@ -311,10 +304,9 @@ async def carbon_question_four(message: types.Message, state: FSMContext):
 
 async def variant_case_five(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
-    await asyncio.sleep(2)
 
     await call.message.answer('Отлично, твой персональный вклад в сохранении планеты будет очень существенным!')
-    await asyncio.sleep(5)
+    await asyncio.sleep(3)
 
     await call.message.answer('Готов получить полезный подарок?!', reply_markup=inline_variant_case_five)
 
@@ -323,8 +315,6 @@ async def variant_case_six(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
     data = await state.get_data()  # тут хранится весь словарь состояний
     variant_case = data.get('variant')
-    await asyncio.sleep(2)
-
     await call.message.answer(variant_text_twenty_three[variant_case])
     await asyncio.sleep(5)
     await state.finish()

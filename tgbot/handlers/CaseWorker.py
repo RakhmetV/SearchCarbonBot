@@ -4,14 +4,17 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
 
 from tgbot.keyboards.inline import researchesStart, carbon_footprint, carbonFootprintTest, carbonFootprintAnswer, \
-    inline_interaction_three, carbon_heard, carbon_greenhouse_effect, carbon_understand, carbon_bulochka
+    carbon_heard, carbon_greenhouse_effect, carbon_understand, carbon_bulochka
 from tgbot.services.db import Database
 from tgbot.states.test import Data
 
 db = Database('database.db')
 async def carbon_footprint_info(call: CallbackQuery):
     await call.answer(cache_time=5)
-    db.set_studying_topic_one(call.message.chat.id, call.data.split(':')[1])
+    await call.message.answer('Я очень рад, что тебе понравился чемоданчик.\n\n'
+                              'Но сперва мы изучим тему нашего исследования')
+    await asyncio.sleep(3)
+
     await call.message.answer('Углеродный след - это совокупность всех парниковых газов, '
                               'которые попадают в окружающую среду от деятельности людей, '
                               'организаций, компаний, городов и стран')
@@ -24,13 +27,7 @@ async def carbon_footprint_info(call: CallbackQuery):
 
     await call.message.answer('Слышал про данные газы?', reply_markup=carbon_heard)
 
-    # await call.message.answer(
-    #     'Сами по себе парниковые газы не несут вреда, но они усиливают естественное явление - парниковый эффект. '
-    #     'Этот эффект позволяет поддерживать комфортную температуру для жизни на Земле. '
-    #     'Но увеличение концентрации парниковых газов сопутствуют изменению климата на Земле')
-    # await asyncio.sleep(1)
-    # await call.message.answer('Давай повторим изученное:\n'
-    #                           'Какой газ не входит в состав парниковых газов?', reply_markup=carbonFootprintTest)
+
 
 
 async def carbon_Heard(call: CallbackQuery):
@@ -108,7 +105,7 @@ async def carbonBulka(call: CallbackQuery):
     else:
         db.set_studying_topic_three(call.message.chat.id, 'покупка булочек с корицей местного производства')
         await call.message.answer('Правильный ответ - производство булочек с корицей')
-    await asyncio.sleep(5)
+    await asyncio.sleep(3)
 
     await call.message.answer('Мы с тобой изучили, что такое углеродный след и его виды, '
                               'а также разобрались в чем суть парникового эффекта')
@@ -129,7 +126,7 @@ async def carbonUnderstand(call: CallbackQuery):
 
 
 def register_case_worker(dp: Dispatcher):
-    dp.register_callback_query_handler(carbon_footprint_info, text_contains='carbonfootprint', state=None)
+    dp.register_callback_query_handler(carbon_footprint_info, text_contains='inlineInteractTwo', state=None)
     dp.register_callback_query_handler(carbon_Heard, text_contains='carbonheard', state=None)
     dp.register_callback_query_handler(carbon_Heard_answer, text_contains='greenhouse', state=None)
     dp.register_callback_query_handler(carbon_footprint_test_answer, text_contains='carbonTest', state=None)

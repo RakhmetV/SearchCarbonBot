@@ -152,10 +152,7 @@ inline_interaction_two = InlineKeyboardMarkup(
 inline_interaction_three = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Обожаю делать распаковки', callback_data='inlineInteractThree')
-        ],
-        [
-            InlineKeyboardButton(text='Давай', callback_data='inlineInteractThree')
+            InlineKeyboardButton(text='Давай🙌', callback_data='inlineInteractThree')
         ]
     ],
     row_width=1
@@ -264,7 +261,7 @@ carbon_heard = InlineKeyboardMarkup(
 carbon_greenhouse_effect = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text='Позволяет поддерживать комфортную температуру для жизни на Земле',
+            InlineKeyboardButton(text='Поддерживает комфортную температуру для жизни на Земле',
                                  callback_data='greenhouse:true')
         ],
         [
