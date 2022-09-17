@@ -115,6 +115,11 @@ class Database:
                                        (answer_two, user_id,))
 
     # уставнока статуса
+    def set_status_all(self):
+        with self.connection:
+            return self.cursor.execute("UPDATE `users` SET `status` = ? WHERE `status` = ?",
+                                       (1, 0,))
+
     def set_status(self, user_id, status):
         with self.connection:
             return self.cursor.execute("UPDATE `users` SET `status` = ? WHERE `user_id` = ?",

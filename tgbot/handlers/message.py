@@ -3,7 +3,8 @@ team_selection = {
     'CO2': 2,
     'H2O': 3,
     'N2O': 4,
-    'SF6': 5
+    'SF6': 5,
+    'CF': 6
 }
 
 team_name = {

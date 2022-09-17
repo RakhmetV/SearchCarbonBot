@@ -131,7 +131,7 @@ async def carbon_question_c(message: types.Message, state: FSMContext):
             if int(message.text) >= 0:
                 # 7
                 await state.update_data(c=int(message.text))
-                await asyncio.sleep(2)
+                await asyncio.sleep(1)
                 await message.answer('Какое расстояние от твоего дома до торгового центра?')
                 await DataCase.next()
             else:
@@ -151,7 +151,6 @@ async def carbon_question_two(message: types.Message, state: FSMContext):
 
                 await state.update_data(two=int(message.text))
                 variant_case = data.get('variant')
-                await asyncio.sleep(3)
                 if variant_case == 0 \
                         or variant_case == 1 \
                         or variant_case == 3 \
@@ -272,7 +271,6 @@ async def carbon_question_four(message: types.Message, state: FSMContext):
     if not bool(data.get('four')):
         if message.text.isdigit():
             if int(message.text) >= 0:
-                await asyncio.sleep(2)
                 # 0 4 5 6 7 8 9
                 variant_case = data.get('variant')
                 if variant_case != 1 or variant_case != 2 or variant_case != 3:

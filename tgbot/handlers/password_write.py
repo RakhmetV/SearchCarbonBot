@@ -23,7 +23,6 @@ async def password_write_one(call: CallbackQuery):
         'Для того чтобы начать исследование необходимо ввести код📝')
     await asyncio.sleep(1)
 
-
     await call.message.answer(
         'Узнай код у организатора')
     await asyncio.sleep(1)
@@ -52,6 +51,46 @@ async def password_write_three(call: CallbackQuery):
     await DataPass.CasePassword.set()
 
 
+# async def password_write_four(message: types.Message, state: FSMContext):
+#     data = await state.get_data()  # тут хранится весь словарь состояний
+#     if not bool(data.get('password_case')):
+#         answer = message.text
+#         if answer in team_selection:
+#             db = Database('database.db')
+#             nowdate = datetime.now()
+#             newdate = nowdate.strftime("%d/%m/%Y")
+#             variant = random.randint(0, 9)
+#             db.set_case_number(message.from_user.id, team_selection[answer])
+#             if db.counting_variant_case(team_selection[answer], newdate)[0][0] > 10:
+#                 await message.answer(f'Количество людей в этой команде превысило 10\n'
+#                                      f'Пожалуйста, попробуйте другой пароль')
+#             else:
+#                 check = False
+#                 while db.check_variant(newdate, team_selection[answer], variant):
+#                     db = Database('database.db')
+#                     if db.counting_variant_case(team_selection[answer], newdate)[0][0] > 10:
+#                         check = True
+#                         break
+#                     else:
+#                         variant = random.randint(0, 9)
+#
+#                 if check:
+#                     await message.answer(
+#                         f'Количество людей в этой команде превысило 10\nПожалуйста, попробуйте другой пароль')
+#                 else:
+#                     await state.update_data(password_case=answer)
+#                     db.set_variant(message.from_user.id, variant)
+#                     await message.answer(f'Ты ввел правильную формулу вещества!')
+#                     await asyncio.sleep(3)
+#                     await message.answer(f'Сейчас ты получишь случайным образом '
+#                                          f'одну из десяти жизненных ситуаций🌟, на примере '
+#                                          f'которой будешь рассчитывать способы снижения '
+#                                          f'углеродного следа', reply_markup=inline_case_pass_three)
+#                     await state.finish()
+#         else:
+#             await message.answer('Вы ввели неправильный пароль. Введите его снова')
+
+
 async def password_write_four(message: types.Message, state: FSMContext):
     data = await state.get_data()  # тут хранится весь словарь состояний
     if not bool(data.get('password_case')):
@@ -60,64 +99,63 @@ async def password_write_four(message: types.Message, state: FSMContext):
             db = Database('database.db')
             nowdate = datetime.now()
             newdate = nowdate.strftime("%d/%m/%Y")
-            variant = random.randint(0, 9)
+            # variant = random.randint(0, 9)
             db.set_case_number(message.from_user.id, team_selection[answer])
-            if db.counting_variant_case(team_selection[answer], newdate)[0][0] > 10:
+            db = Database('database.db')
+            variant = db.counting_variant_case(team_selection[answer], newdate)[0][0]
+            if variant > 9:
                 await message.answer(f'Количество людей в этой команде превысило 10\n'
                                      f'Пожалуйста, попробуйте другой пароль')
             else:
-                check = False
-                while db.check_variant(newdate, team_selection[answer], variant):
-                    if db.counting_variant_case(team_selection[answer], newdate)[0][0] > 10:
-                        check = True
-                        break
-                    else:
-                        variant = random.randint(0, 9)
+                await state.update_data(password_case=answer)
+                db.set_variant(message.from_user.id, variant)
 
-                if check:
-                    await message.answer(
-                        f'Количество людей в этой команде превысило 10\nПожалуйста, попробуйте другой пароль')
-                else:
-                    await state.update_data(password_case=answer)
-                    db.set_variant(message.from_user.id, variant)
-                    await message.answer(f'Ты ввел правильную формулу вещества!')
-                    await asyncio.sleep(3)
-                    await message.answer(f'Сейчас ты получишь случайным образом '
-                                         f'одну из десяти жизненных ситуаций🌟, на примере '
-                                         f'которой будешь рассчитывать способы снижения '
-                                         f'углеродного следа', reply_markup=inline_case_pass_three)
-                    await state.finish()
+                await DataPass.next()
+
+                await state.update_data(pass_variant=variant)
+
+                await message.answer(f'Ты ввел правильную формулу вещества!')
+                await asyncio.sleep(3)
+                await message.answer(f'Сейчас ты получишь случайным образом '
+                                     f'одну из десяти жизненных ситуаций🌟, на примере '
+                                     f'которой будешь рассчитывать способы снижения '
+                                     f'углеродного следа', reply_markup=inline_case_pass_three)
         else:
             await message.answer('Вы ввели неправильный пароль. Введите его снова')
 
 
-async def password_write_five(call: CallbackQuery):
+async def password_write_five(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
-    db = Database('database.db')
-    await call.message.answer('Несколько мгновений и ты получишь заветную тему')
-    await asyncio.sleep(3)
+    data = await state.get_data()  # тут хранится весь словарь состояний
+    variant = data.get('pass_variant')
+    if bool(str(variant).isdigit()):
+        await call.message.answer('Несколько мгновений и ты получишь заветную тему')
+        await asyncio.sleep(3)
 
-    await call.message.answer('Еще секундочку!')
-    await asyncio.sleep(2)
+        await call.message.answer('Еще секундочку!')
+        await asyncio.sleep(2)
 
-    variant = db.get_variant(call.message.chat.id)[0][0]
-    await call.message.answer(f'И наконец! Ты получаешь исследование по теме <b>{team_name[variant]}</b>',
-                              parse_mode='HTML')
-    await asyncio.sleep(5)
+        await call.message.answer(f'И наконец! Ты получаешь исследование по теме <b>{team_name[variant]}</b>',
+                                  parse_mode='HTML')
+        await asyncio.sleep(5)
 
-    await call.message.answer('Покажи тему жизненной ситуации организатору '
-                              'и он выдаст тебе персональный чемоданчик для исследования🧳')
-    await asyncio.sleep(5)
+        await call.message.answer('Покажи тему жизненной ситуации организатору '
+                                  'и он выдаст тебе персональный чемоданчик для исследования🧳')
+        await asyncio.sleep(5)
 
-    await call.message.answer('Получил чемоданчик?', reply_markup=inline_interaction_one)
+        await call.message.answer('Получил чемоданчик?', reply_markup=inline_interaction_one)
+        await state.finish()
+    else:
+        await call.message.answer('Повторите попытку')
+        await call.message.answer(f'Сейчас ты получишь случайным образом '
+                                  f'одну из десяти жизненных ситуаций🌟, на примере '
+                                  f'которой будешь рассчитывать способы снижения '
+                                  f'углеродного следа', reply_markup=inline_case_pass_three)
 
 
 async def interact_case_one(call: CallbackQuery):
     await call.answer(cache_time=5)
-
     await call.message.answer('Как тебе набор?', reply_markup=inline_interaction_two)
-
-
 
 
 def register_password_write_worker(dp: Dispatcher):
@@ -126,6 +164,7 @@ def register_password_write_worker(dp: Dispatcher):
     dp.register_callback_query_handler(password_write_two, text_contains='CasePasswordOne', state=None)
     dp.register_callback_query_handler(password_write_three, text_contains='CasePasswordTwo', state=None)
     dp.register_message_handler(password_write_four, state=DataPass.CasePassword)
-    dp.register_callback_query_handler(password_write_five, text_contains='CasePasswordThree', state=None)
+    dp.register_callback_query_handler(password_write_five, text_contains='CasePasswordThree',
+                                       state=DataPass.CaseVariant)
 
     dp.register_callback_query_handler(interact_case_one, text_contains='inlineInteractOne', state=None)

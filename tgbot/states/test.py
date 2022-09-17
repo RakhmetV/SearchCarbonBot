@@ -21,6 +21,7 @@ class Data(StatesGroup):
 
 class DataPass(StatesGroup):
     CasePassword = State()
+    CaseVariant = State()
 
 
 class InterPass(StatesGroup):

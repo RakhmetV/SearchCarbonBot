@@ -5,10 +5,12 @@ from datetime import datetime
 from openpyxl import load_workbook
 from tgbot.handlers.message import team_name
 from tgbot.keyboards.inline import start_bot_keyboard
-from tgbot.keyboards.keyboards_menu import start_menu, interactive_menu, exel_menu
+from tgbot.keyboards.keyboards_menu import start_menu, interactive_menu, exel_menu, interactive_db
 from tgbot.services.db import Database
 
 db = Database('database.db')
+
+
 async def send_video(message: Message):
     print(1)
     await message.answer_video(video='BAACAgIAAxkBAAJS9GMh1Uzs_b45tPyyZC8Zq-KEv2TPAAKfHAACEHURSchjJ3fKot6MKQQ')
@@ -71,7 +73,10 @@ async def admin_menu(message: Message):
                 name.append(user[0])
                 college.append(user[1])
                 date.append(user[2])
-                variant.append(team_name[user[3]])
+                if bool(user[3]):
+                    variant.append(team_name[user[3]])
+                else:
+                    variant.append('-1')
                 answer_one.append(user[4])
                 answer_two.append(user[5])
                 feedback.append(user[6])
@@ -90,6 +95,15 @@ async def admin_menu(message: Message):
         else:
             await message.answer('Сегодня никто не проходил интерактив')
 
+    # ---------------------
+    elif message.text == 'БД':
+        await message.answer('Основное меню', reply_markup=interactive_db)
+    elif message.text == 'Установить для всех статус':
+        db.set_status_all()
+        await message.answer('Для всех установлен статус завершения')
+    elif message.text == 'Удалить всех из бд':
+        db.del_all_users()
+        await message.answer('Все пользователи были удалены')
     # ---------------------
     elif message.text == 'За все время':  # Не готово еще
         if bool(len(db.get_user_all())):
@@ -123,7 +137,10 @@ async def admin_menu(message: Message):
                 studying_topic_two.append(user[8])
                 studying_topic_three.append(user[9])
                 studying_topic_four.append(user[10])
-                variant.append(team_name[user[11]])
+                if bool(user[11]):
+                    variant.append(team_name[user[11]])
+                else:
+                    variant.append('-1')
                 answer_one.append(user[12])
                 answer_two.append(user[13])
                 feedback.append(user[14])

@@ -17,12 +17,11 @@ from tgbot.handlers.password_write import register_password_write_worker
 from tgbot.handlers.user import register_user
 from tgbot.handlers.variant_case import register_variant_case
 from tgbot.middlewares.environment import EnvironmentMiddleware
-from tgbot.services.db import Database
-
 
 logger = logging.getLogger(__name__)
 
-#commit
+
+# commit
 def register_all_middlewares(dp, config):
     dp.setup_middleware(EnvironmentMiddleware(config=config))
 
@@ -44,7 +43,6 @@ def register_all_handlers(dp):
     register_after_the_case(dp)
 
 
-
 async def main():
     logging.basicConfig(
         level=logging.INFO,
@@ -52,8 +50,7 @@ async def main():
     )
     logger.info("Starting bot")
     config = load_config(".env")
-
-    #storage = RedisStorage2() if config.tg_bot.use_redis else MemoryStorage()
+    # storage = RedisStorage2() if config.tg_bot.use_redis else MemoryStorage()
     storage = MemoryStorage()
     bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
     dp = Dispatcher(bot, storage=storage)

@@ -25,13 +25,14 @@ async def interact_case_two(call: CallbackQuery):
 
 async def interact_case_three(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await call.message.answer('Внутри чемоданчика лежат все необходимое, которое поможет '
-                              'тебе провести исследование: письмо-приветствие, '
-                              'секретный конверт, бандана и полезный подарок')
+    await call.message.answer('Внутри чемоданчика лежат все необходимое, которое поможет тебе провести исследование🔍:\n\n'
+                              '•письмо-приветствие\n'
+                              '•конверт\n'
+                              '•бандана\n'
+                              '•полезный подарок')
     await asyncio.sleep(7)
 
-    await call.message.answer('Для начала прочитай письмо-приветствие, '
-                              'которое находится в самом верху внутри чемоданчика')
+    await call.message.answer('Для начала прочитай письмо-приветствие, которое находится в конверте✉')
     await asyncio.sleep(5)
 
     await call.message.answer('Прочитал?', reply_markup=inline_interaction_four)
@@ -39,13 +40,14 @@ async def interact_case_three(call: CallbackQuery):
 
 async def interact_case_four(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await call.message.answer('Теперь прочитай еще раз и найди все цифры в тексте',
+    await call.message.answer('Теперь прочитай еще раз и найди все цифры в тексте🔢',
                               reply_markup=inline_interaction_five)
 
 
 async def interact_case_five(call: CallbackQuery):
     await call.answer(cache_time=5)
-    await call.message.answer('Расположи их в виде возрастания. Это будет являться паролем.')
+    await call.message.answer('Расположи их в виде возрастаниями\n\n'
+                              'Это будет являться паролем')
     await asyncio.sleep(5)
 
     await call.message.answer('Введи пароль')
@@ -70,8 +72,7 @@ async def interact_case_six(message: types.Message, state: FSMContext):
 
 async def interact_case_seven(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
-    await call.message.answer('В этой бандане нарисованы символы всех жизненных '
-                              'ситуаций, которых будем исследовать')
+    await call.message.answer('В этой бандане нарисованы символы всех жизненных ситуаций, которых будем исследовать🙌')
     await asyncio.sleep(5)
 
     await call.message.answer('Ты можешь повязать бандану на руку или придумать '
@@ -80,15 +81,15 @@ async def interact_case_seven(call: CallbackQuery, state: FSMContext):
 
 async def interact_case_eight(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
-    await call.message.answer('Внутри чемодана есть конверт. Его нужно открыть', reply_markup=inline_interaction_eight)
+    await call.message.answer('Открой конверт😉', reply_markup=inline_interaction_eight)
 
 
 async def interact_case_nine(call: CallbackQuery, state: FSMContext):
     await call.answer(cache_time=5)
     await state.finish()
-    await call.message.answer('Как ты видишь, внутри него лежит комикс и плакат\n\n'
-                              'Ты можешь повесить плакат на стену, а комикс нам '
-                              'понадобится при проведении исследования')
+    await call.message.answer('Как ты видишь, внутри него лежит комикс и плакат🧩\n\n'
+                              'Ты можешь повесить плакат на стену, а комикс '
+                              'нам понадобится при проведении исследования')
     await asyncio.sleep(5)
 
     await call.message.answer('Кроме всего этого есть полезные подарки, но о них мы расскажем чуть позже')

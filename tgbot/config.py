@@ -14,7 +14,7 @@ class DbConfig:
 @dataclass
 class TgBot:
     token: str
-    admin_ids: list[int]
+    admin_ids: []
     use_redis: bool
 
 
@@ -48,3 +48,4 @@ def load_config(path: str = None):
         ),
         misc=Miscellaneous()
     )
+
